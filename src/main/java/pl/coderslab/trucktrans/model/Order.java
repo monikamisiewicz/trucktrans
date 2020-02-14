@@ -6,11 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
+import pl.coderslab.trucktrans.converters.LocalDateConverter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,8 @@ public class Order {
 
     @NotNull
     @Column(name = "date")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @Convert(converter = LocalDateConverter.class)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate date;
 
     @Column(name = "order_number", unique = true)
@@ -59,6 +60,8 @@ public class Order {
     @Column(name = "comment")
     private  String comment;
 
+    @Column(name = "terms")
+    private String terms;
 
     @ManyToOne
     private Company company;
@@ -67,12 +70,13 @@ public class Order {
     private Contractor contractor;
 
     @ManyToOne
-    private Truck truck;
+    private Tractor tractor;
 
     @ManyToOne
     private Trailer trailer;
 
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+//    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToMany(cascade = {CascadeType.MERGE})
     @JoinTable(name = "drivers_orders", joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "driver_id"))
     private List<Driver> drivers = new ArrayList<>();

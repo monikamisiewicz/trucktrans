@@ -1,4 +1,4 @@
-package pl.coderslab.trucktrans.truck;
+package pl.coderslab.trucktrans.tractor;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,120 +16,107 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/trucks")
+@RequestMapping("/tractors")
 @RequiredArgsConstructor
-public class TruckController {
+public class TractorController {
 
-    private final TruckRepository truckRepository;
+    private final TractorRepository tractorRepository;
     private final DriverRepository driverRepository;
 
     @GetMapping
     public String add(Model model) {
-        model.addAttribute("truck", new Tractor());
-        return "trucks/add";
+        model.addAttribute("tractor", new Tractor());
+        return "tractors/add";
     }
 
     @PostMapping
-    public String save(@ModelAttribute @Valid Tractor tractor, BindingResult bindingResult) {
+    public String save(@ModelAttribute("tractor") @Valid Tractor tractor, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
-            return "trucks/add";
+            return "tractors/add";
         }
-        truckRepository.save(tractor);
-        return "redirect:/trucks/list";
+        tractorRepository.save(tractor);
+        return "redirect:/tractors/list";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable long id, Model model) {
-        Optional<Tractor> truck = truckRepository.findById(id);
-        model.addAttribute("truck", truck.orElseThrow(IllegalArgumentException::new));
-        return "trucks/edit";
+        Optional<Tractor> tractor = tractorRepository.findById(id);
+        model.addAttribute("tractor", tractor.orElseThrow(IllegalArgumentException::new));
+        return "tractors/edit";
     }
 
     @PostMapping("/edit")
-    public String update(@ModelAttribute @Valid Tractor tractor, BindingResult bindingResult) {
+    public String update(@ModelAttribute("tractor") @Valid Tractor tractor, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
-            return "trucks/edit";
+            return "tractors/edit";
         }
-        truckRepository.save(tractor);
-        return "redirect:/trucks/list";
+        tractorRepository.save(tractor);
+        return "redirect:/tractors/list";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteCheck(@PathVariable long id, Model model) {
-        model.addAttribute("truckId", id);
-        return "trucks/delete";
+        model.addAttribute("tractorId", id);
+        return "tractors/delete";
     }
 
     @GetMapping("/delete-action/{id}")
     public String delete(@PathVariable long id, @RequestParam("action") boolean action) {
         if (action) {
-            truckRepository.deleteById(id);
+            tractorRepository.deleteById(id);
         }
-        return "redirect:/trucks/list";
+        return "redirect:/tractors/list";
     }
 
 
     @GetMapping("/list")
     public String getList(Model model) {
-        model.addAttribute("trucks", truckRepository.findAll());
-        return "trucks/list";
+        model.addAttribute("tractors", tractorRepository.findAll());
+        return "tractors/list";
     }
-
-
-
-//    @GetMapping("/driver")
-//    public String getByDriver(@RequestParam("driver") long driverId, Model model) {
-//        if (driverId != -1) {
-//            Driver driver = driverRepository.findById(driverId).orElseThrow(IllegalAccessError::new);
-//            model.addAttribute("trucks", truckRepository.findByDriver(driver));
-//        } else {
-//            model.addAttribute("trucks", Collections.emptyList());
-//        }
-//        return "trucks/list";
-//    }
 
     @GetMapping("/make")
     public String getByMake(@RequestParam("make") String make, Model model) {
-        model.addAttribute("trucks", truckRepository.findByMake(make));
-        return "trucks/list";
+        model.addAttribute("tractors", tractorRepository.findByMake(make));
+        return "tractors/list";
     }
 
     @GetMapping("/model")
     public String getByModel(@RequestParam("model") String truckModel, Model model) {
-        model.addAttribute("trucks", truckRepository.findByModel(truckModel));
+        model.addAttribute("tractors", tractorRepository.findByModel(truckModel));
         return "vehicles/list";
     }
 
     @GetMapping("/registration")
     public String getByRegistrationNumber(@RequestParam("registration") String registrationNumber, Model model) {
-        model.addAttribute("trucks", truckRepository.findByRegistrationNumber(registrationNumber)
+        model.addAttribute("tractors", tractorRepository.findByRegistrationNumber(registrationNumber)
                 .map(Collections::singletonList).orElse(Collections.emptyList()));
-        return "trucks/list";
+        return "tractors/list";
     }
 
     @GetMapping("/registration-start")
     public String getByRegistrationNumberStart(@RequestParam("registration") String registrationNumber, Model model) {
-        model.addAttribute("trucks", truckRepository.findByRegistrationNumberStartsWith(registrationNumber));
-        return "trucks/list";
+        model.addAttribute("tractors", tractorRepository.findByRegistrationNumberStartsWith(registrationNumber));
+        return "tractors/list";
     }
 
     @GetMapping("/vin")
     public String getByVin(@RequestParam("vin") String vin, Model model) {
-        model.addAttribute("trucks", truckRepository.findByVin(vin)
+        model.addAttribute("tractors", tractorRepository.findByVin(vin)
                 .map(Collections::singletonList).orElse(Collections.emptyList()));
-        return "trucks/list";
+        return "tractors/list";
     }
 
     @GetMapping("/vin-start")
     public String getByVinStart(@RequestParam("vin") String vin, Model model) {
-        model.addAttribute("trucks", truckRepository.findByVinStartsWith(vin));
-        return "trucks/list";
+        model.addAttribute("tractors", tractorRepository.findByVinStartsWith(vin));
+        return "tractors/list";
     }
 
     @GetMapping("/vin-end")
     public String getByVinEnd(@RequestParam("vin") String vin, Model model) {
-        model.addAttribute("trucks", truckRepository.findByVinEndsWith(vin));
-        return "trucks/list";
+        model.addAttribute("tractors", tractorRepository.findByVinEndsWith(vin));
+        return "tractors/list";
     }
 
 

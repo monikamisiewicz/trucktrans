@@ -1,4 +1,4 @@
-
+package pl.coderslab.trucktrans.order;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -6,12 +6,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.trucktrans.company.CompanyRepository;
+import pl.coderslab.trucktrans.contractor.ContractorRepository;
+import pl.coderslab.trucktrans.converters.LocalDateConverter;
 import pl.coderslab.trucktrans.driver.DriverRepository;
-import pl.coderslab.trucktrans.model.Order;
+import pl.coderslab.trucktrans.model.*;
+import pl.coderslab.trucktrans.trailer.TrailerRepository;
+import pl.coderslab.trucktrans.tractor.TractorRepository;
 
+import javax.persistence.Convert;
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +30,7 @@ public class OrderController {
     private final DriverRepository driverRepository;
     private final CompanyRepository companyRepository;
     private final ContractorRepository contractorRepository;
-    private final TruckRepository truckRepository;
+    private final TractorRepository tractorRepository;
     private final TrailerRepository trailerRepository;
 
     @GetMapping
@@ -51,7 +56,7 @@ public class OrderController {
     }
 
     @PostMapping("/edit")
-    public String update(@ModelAttribute @Valid Order order, BindingResult bindingResult) {
+    public String update(@ModelAttribute("order") @Valid Order order, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "orders/edit";
         }
@@ -99,10 +104,10 @@ public class OrderController {
     }
 
     @GetMapping("/truck")
-    public String getByTruck(@RequestParam("truck") long truckId, Model model) {
+    public String getByTruck(@RequestParam("tractor") long truckId, Model model) {
         if (truckId != -1) {
-            Truck truck = truckRepository.findById(truckId).orElseThrow(IllegalAccessError::new);
-            model.addAttribute("orders", orderRepository.findByTruck(truck));
+            Tractor tractor = tractorRepository.findById(truckId).orElseThrow(IllegalAccessError::new);
+            model.addAttribute("orders", orderRepository.findByTractor(tractor));
         } else {
             model.addAttribute("orders", Collections.emptyList());
         }
@@ -153,18 +158,18 @@ public class OrderController {
 //        return "orders/list";
 //    }
 
-    //problem z konwersją daty!!!!
+
     @GetMapping("/date-range")
-    public String getByDateRange(@RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
-                                 @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end, Model model) {
+    public String getByDateRange(@RequestParam("start") @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate start,
+                                 @RequestParam("end") @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate end, Model model) {
         model.addAttribute("orders", orderRepository.findOrderByDateBetween(start, end));
         return "orders/list";
     }
 
 
-    @ModelAttribute("companyData")
-    public List<CompanyData> companyData() {
-        return companyDataRepository.findAll();
+    @ModelAttribute("company")
+    public List<Company> companyData() {
+        return companyRepository.findAll();
     }
 
     @ModelAttribute("contractors")
@@ -173,8 +178,8 @@ public class OrderController {
     }
 
     @ModelAttribute("trucks")
-    public List<Truck> trucks() {
-        return truckRepository.findAll();
+    public List<Tractor> trucks() {
+        return tractorRepository.findAll();
     }
 
     @ModelAttribute("trailers")

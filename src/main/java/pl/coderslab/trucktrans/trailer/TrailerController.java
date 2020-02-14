@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.mytrans.repository.DriverRepository;
+import pl.coderslab.trucktrans.driver.DriverRepository;
 import pl.coderslab.trucktrans.model.Driver;
 import pl.coderslab.trucktrans.model.Trailer;
 
@@ -30,7 +30,7 @@ public class TrailerController {
     }
 
     @PostMapping
-    public String save(@ModelAttribute @Valid Trailer trailer, BindingResult bindingResult) {
+    public String save(@ModelAttribute("trailer") @Valid Trailer trailer, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "trailers/add";
         }
@@ -46,7 +46,7 @@ public class TrailerController {
     }
 
     @PostMapping("/edit")
-    public String update(@ModelAttribute @Valid Trailer trailer, BindingResult bindingResult) {
+    public String update(@ModelAttribute("trailer") @Valid Trailer trailer, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "trailers/edit";
         }

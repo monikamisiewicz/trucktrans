@@ -44,7 +44,4 @@ public class Contractor {
     @Column(name = "place")
     private String place;
 
-
-
-
 }

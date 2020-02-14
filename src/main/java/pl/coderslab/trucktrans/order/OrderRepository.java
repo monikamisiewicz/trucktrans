@@ -1,8 +1,9 @@
-package pl.coderslab.mytrans.repository;
+package pl.coderslab.trucktrans.order;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import pl.coderslab.mytrans.model.*;
+import pl.coderslab.trucktrans.model.*;
+
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,7 +18,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findByContractor(Contractor contractor);
 
-    List<Order> findByTruck(Truck truck);
+    List<Order> findByTractor(Tractor tractor);
 
     List<Order> findByTrailer(Trailer trailer);
 

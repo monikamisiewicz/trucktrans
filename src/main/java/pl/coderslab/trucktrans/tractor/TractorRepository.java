@@ -1,4 +1,4 @@
-package pl.coderslab.trucktrans.truck;
+package pl.coderslab.trucktrans.tractor;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -7,9 +7,7 @@ import pl.coderslab.trucktrans.model.Tractor;
 import java.util.List;
 import java.util.Optional;
 
-public interface TruckRepository extends JpaRepository<Tractor,  Long> {
-
-//    List<Truck> findByDriver(Driver driver);
+public interface TractorRepository extends JpaRepository<Tractor,  Long> {
 
     List<Tractor> findByMake(String make);
 

@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Formula;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
+import pl.coderslab.trucktrans.converters.LocalDateConverter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -29,11 +30,13 @@ public class Invoice {
     private String invoiceNumber;
 
     @Column(name = "invoice_date")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @Convert(converter = LocalDateConverter.class)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate invoiceDate;
 
     @Column(name = "service_date")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @Convert(converter = LocalDateConverter.class)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate serviceDate;
 
     @Column(name = "place")
@@ -60,25 +63,21 @@ public class Invoice {
     @Column(name = "unit_price", precision = 10, scale = 2)
     private Double unitPrice;
 
+    @Range(min = 0, max = 100)
     @Column(name = "vat_rate")
     private Integer vatRateInPercent;
-
-//    //jak kalkulować datę?
-//    @Formula(value = "invoice_date + days")
-//    private LocalDate paymentDate;
-//
-//    @Formula(value = "quantity * unitPrice")
-//    private Double netAmount;
-//
-//    @Formula(value = "netAmount * vat_rate/100")
-//    private Double vatAmount;
-//
-//    @Formula(value = "netAmount + vatAmount")
-//    private Double grossAmount;
 
     @Size(max = 600)
     @Column(name = "annotations")
     private String annotations;
+
+    public void setPaid(Boolean paid) {
+        isPaid = false;
+    }
+
+    @Column(name = "is_paid")
+    private Boolean isPaid;
+
 
     @ManyToOne
     private Contractor contractor;
@@ -91,15 +90,18 @@ public class Invoice {
         return invoiceDate.plusDays(this.days);
     }
 
+    @Transient
     public Double getNetAmount() {
         return quantity * unitPrice;
     }
 
+    @Transient
     public Double getVatAmount() {
         return getNetAmount() * vatRateInPercent;
     }
 
-    public Double grossAmount() {
+    @Transient
+    public Double getGrossAmount() {
         return getNetAmount() + getVatAmount();
     }
 

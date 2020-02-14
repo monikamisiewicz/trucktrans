@@ -6,10 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.pl.PESEL;
 import org.springframework.format.annotation.DateTimeFormat;
+import pl.coderslab.trucktrans.converters.LocalDateConverter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +38,8 @@ public class Driver {
     private String lastName;
 
     @Past
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @Convert(converter = LocalDateConverter.class)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
@@ -43,16 +47,36 @@ public class Driver {
     @Column(name = "pesel", unique = true)
     private String pesel;
 
-    @Column(name = "id_number", unique = true)
-    private String idNumber;
-
     @Column(name = "phone")
     private String phone;
 
-    @ManyToOne
-    private Truck truck;
+    @Future
+    @Convert(converter = LocalDateConverter.class)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Column(name = "driving_licence_validity")
+    private LocalDate drivingLicenceValidity;
 
-    @ManyToOne
+    @PastOrPresent
+    @Convert(converter = LocalDateConverter.class)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Column(name = "last_osh")
+    private LocalDate lastOSH;
+
+    @Future
+    @Convert(converter = LocalDateConverter.class)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Column(name = "next_osh")
+    private LocalDate nextOSH;
+
+    @OneToOne
+    @JoinColumn(name = "tractor_id",
+            unique=true)
+    private Tractor tractor;
+
+
+    @OneToOne
+    @JoinColumn(name = "trailer_id",
+            unique=true)
     private Trailer trailer;
 
     @ManyToMany(mappedBy = "drivers")
@@ -64,8 +88,12 @@ public class Driver {
 
     public String getDriverDetails() {
         return firstName + " " + lastName + ", " +
-                truck.getMake() + " " + truck.getRegistrationNumber() + " - "
+                tractor.getMake() + " " + tractor.getRegistrationNumber() + " - "
                 + trailer.getMake() + " " + trailer.getRegistrationNumber();
     }
 
+    @Override
+    public String toString() {
+        return firstName + ' ' + lastName + '\n';
+    }
 }

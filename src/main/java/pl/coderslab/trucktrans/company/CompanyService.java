@@ -15,23 +15,21 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CompanyService {
 
-    private final CompanyRepository companyRepository;
-
-    @GetMapping("/edit/{id}")
-    public String edit(@PathVariable long id, Model model) {
-        Optional<Company> company = companyRepository.findById(id);
-        model.addAttribute("company", company.orElseThrow(IllegalArgumentException::new));
-        return "company/edit";
-    }
-
-    @PostMapping("/edit")
-    public String update(@ModelAttribute @Valid Company company, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "company/edit";
-        }
-        companyRepository.save(company);
-        return "redirect:/company/data";
-    }
-
-
+//    private final CompanyRepository companyRepository;
+//
+//    @GetMapping("/edit/{id}")
+//    public String edit(@PathVariable long id, Model model) {
+//        Optional<Company> company = companyRepository.findById(id);
+//        model.addAttribute("company", company.orElseThrow(IllegalArgumentException::new));
+//        return "company/edit";
+//    }
+//
+//    @PostMapping("/edit/")
+//    public String update(@ModelAttribute @Valid Company company, BindingResult bindingResult) {
+//        if (bindingResult.hasErrors()) {
+//            return "company/edit";
+//        }
+//        companyRepository.save(company);
+//        return "redirect:/company/data";
+//    }
 }

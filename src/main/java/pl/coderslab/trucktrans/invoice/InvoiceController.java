@@ -29,7 +29,7 @@ public class InvoiceController {
 
     private final InvoiceRepository invoiceRepository;
     private final DriverRepository driverRepository;
-    private final CompanyRepository companyDataRepository;
+    private final CompanyRepository companyRepository;
     private final ContractorRepository contractorRepository;
 
     @GetMapping
@@ -144,7 +144,7 @@ public class InvoiceController {
 
     @ModelAttribute("company")
     public List<Company> companyData() {
-        return companyDataRepository.findAll();
+        return companyRepository.findAll();
     }
 
     @ModelAttribute("contractors")

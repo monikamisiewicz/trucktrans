@@ -2,8 +2,6 @@ package pl.coderslab.trucktrans.trailer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import pl.coderslab.mytrans.model.Driver;
-import pl.coderslab.mytrans.model.Trailer;
 import pl.coderslab.trucktrans.model.Trailer;
 
 import java.util.List;

@@ -28,7 +28,7 @@ public class ContractorController {
     }
 
     @PostMapping
-    public String save(@ModelAttribute @Valid Contractor contractor, BindingResult bindingResult) {
+    public String save(@ModelAttribute("contractor") @Valid Contractor contractor, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "contractors/add";
         }
@@ -44,7 +44,7 @@ public class ContractorController {
     }
 
     @PostMapping("/edit")
-    public String update(@ModelAttribute @Valid Contractor contractor, BindingResult bindingResult) {
+    public String update(@ModelAttribute("contractor") @Valid Contractor contractor, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "contractors/edit";
         }
@@ -69,7 +69,7 @@ public class ContractorController {
 
     @GetMapping("/list")
     public String getList(Model model) {
-        model.addAttribute("contractors", contractorRepository.findAll(Sort.by(Sort.Direction.DESC, "name")));
+        model.addAttribute("contractors", contractorRepository.findAll(Sort.by(Sort.Direction.ASC, "name")));
         return "contractors/list";
     }
 

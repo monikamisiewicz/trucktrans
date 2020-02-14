@@ -7,9 +7,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.trucktrans.model.Driver;
 import pl.coderslab.trucktrans.model.Trailer;
-import pl.coderslab.trucktrans.model.Truck;
+import pl.coderslab.trucktrans.model.Tractor;
 import pl.coderslab.trucktrans.trailer.TrailerRepository;
-import pl.coderslab.trucktrans.truck.TruckRepository;
+import pl.coderslab.trucktrans.tractor.TractorRepository;
 
 import javax.validation.Valid;
 import java.util.Collections;
@@ -22,7 +22,7 @@ import java.util.Optional;
 public class DriverController {
 
     private final DriverRepository driverRepository;
-    private final TruckRepository truckRepository;
+    private final TractorRepository tractorRepository;
     private final TrailerRepository trailerRepository;
 
     @GetMapping
@@ -32,7 +32,7 @@ public class DriverController {
     }
 
     @PostMapping
-    public String save(@ModelAttribute @Valid Driver driver, BindingResult bindingResult) {
+    public String save(@ModelAttribute("driver") @Valid Driver driver, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "drivers/add";
         }
@@ -48,7 +48,7 @@ public class DriverController {
     }
 
     @PostMapping("/edit")
-    public String update(@ModelAttribute @Valid Driver driver, BindingResult bindingResult) {
+    public String update(@ModelAttribute("driver") @Valid Driver driver, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "drivers/edit";
         }
@@ -97,9 +97,9 @@ public class DriverController {
         return "drivers/list";
     }
 
-    @ModelAttribute("trucks")
-    public List<Truck> trucks() {
-        return truckRepository.findAll();
+    @ModelAttribute("tractors")
+    public List<Tractor> tractors() {
+        return tractorRepository.findAll();
     }
 
     @ModelAttribute("trailers")

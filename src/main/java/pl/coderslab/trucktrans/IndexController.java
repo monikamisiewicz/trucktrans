@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.trucktrans.trailer.TrailerRepository;
-import pl.coderslab.trucktrans.truck.TruckRepository;
+import pl.coderslab.trucktrans.tractor.TractorRepository;
 
 
 @Controller
@@ -14,7 +14,7 @@ import pl.coderslab.trucktrans.truck.TruckRepository;
 @RequiredArgsConstructor
 public class IndexController {
 
-    private final TruckRepository truckRepository;
+    private final TractorRepository tractorRepository;
     private final TrailerRepository trailerRepository;
 
     @GetMapping
@@ -24,8 +24,9 @@ public class IndexController {
 
     @GetMapping("/fleet")
     public String getFleet(Model model) {
-        model.addAttribute("trucks", truckRepository.findAll());
+        model.addAttribute("tractors", tractorRepository.findAll());
         model.addAttribute("trailers", trailerRepository.findAll());
         return "fleet";
     }
+
 }

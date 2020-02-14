@@ -5,19 +5,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
+import pl.coderslab.trucktrans.converters.LocalDateConverter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "trucks")
-public class Truck {
+@Table(name = "tractors")
+public class Tractor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,8 +30,6 @@ public class Truck {
     @Column(name = "model")
     private String model;
 
-
-
     @Size(min = 2, max = 14)
     @NotNull(message = "Registration number is required")
     @Column(name = "registration_number")
@@ -41,10 +40,19 @@ public class Truck {
     @Column(name = "vin", unique = true)
     private String vin;
 
-//    @ManyToOne
-//    private Driver driver;
+    @Future
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Convert(converter = LocalDateConverter.class)
+    @Column(name = "next_technical_inspection")
+    private LocalDate nextTechnicalInspection;
 
-    public String getTruckDetails() {
+    @Future
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Convert(converter = LocalDateConverter.class)
+    @Column(name = "insurance_expires")
+    private LocalDate insuranceExpires;
+
+    public String getTractorDetails() {
         return make + " " + model + " " + registrationNumber;
     }
 
