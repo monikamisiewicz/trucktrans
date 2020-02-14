@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="fragment :: head"></div>
+<body>
+<div th:insert="fragment :: header"></div>
+
+
+<h3>Edit truck</h3>
+<form action="#"
+      th:action="@{/edit/{id}(id=${truck.id})}"
+      th:object="${truck}"
+      method="post">
+
+    <label for="make">Make</label>
+    <input type="text" th:field="*{make}" id="make" placeholder="Make">
+    <span th:if="${#fields.hasErrors('make')}" th:errors="*{make}"></span>
+
+    <label for="model">Model</label>
+    <input type="text" th:field="*{model}" id="model" placeholder="Model">
+    <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></span>
+
+    <label for="registrationNumber">registrationNumber</label>
+    <input type="text" th:field="*{registrationNumber}" id="registrationNumber" placeholder="Registration number">
+    <span th:if="${#fields.hasErrors('registrationNumber')}" th:errors="*{registrationNumber}"></span>
+
+    <label for="vin">VIN</label>
+    <input type="text" th:field="*{vin}" id="vin" placeholder="VIN">
+    <span th:if="${#fields.hasErrors('vin')}" th:errors="*{vin}"></span>
+</form>
+
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
+
+<div th:insert="fragment :: footer"></div>
+</body>
+</html>

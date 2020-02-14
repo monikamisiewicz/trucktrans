@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="fragment :: head"></div>
+<body>
+<div th:insert="fragment :: header"></div>
+
+<h3 >Edit company data</h3>
+<form action="#"
+      th:action="@{/company/edit}"
+      th:object="${company}"
+      method="post">
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Company name">
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+
+    <label for="nip">Nip</label>
+    <input type="text" th:field="*{nip}" id="nip" placeholder="NIP">
+    <span th:if="${#fields.hasErrors('nip')}" th:errors="*{nip}"></span>
+
+    <label for="street">Street</label>
+    <input type="text" th:field="*{street}" id="street" placeholder="Street">
+    <span th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></span>
+
+    <label for="streetNumber">Street number</label>
+    <input type="text" th:field="*{streetNumber}" id="streetNumber" placeholder="Street number">
+    <span th:if="${#fields.hasErrors('streetNumber')}" th:errors="*{streetNumber}"></span>
+
+    <label for="postCode">Post Code</label>
+    <input type="text" th:field="*{postCode}" id="postCode" placeholder="xx-xxx">
+    <span th:if="${#fields.hasErrors('postCode')}" th:errors="*{postCode}"></span>
+
+    <label for="place">Place</label>
+    <input type="text" th:field="*{place}" id="place" placeholder="Place">
+    <span th:if="${#fields.hasErrors('place')}" th:errors="*{place}"></span>
+
+    <label for="bank">Bank</label>
+    <input type="text" th:field="*{bank}" id="bank" placeholder="Bank">
+    <span th:if="${#fields.hasErrors('bank')}" th:errors="*{bank}"></span>
+
+    <label for="iban">Account number</label>
+    <input type="text" th:field="*{iban}" id="iban" placeholder="Account number">
+    <span th:if="${#fields.hasErrors('iban')}" th:errors="*{iban}"></span>
+
+    <input type="submit" value="Update">
+</form>
+
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
+
+<div th:insert="fragment :: footer"></div>
+</body>
+</html>

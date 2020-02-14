@@ -1,14 +1,13 @@
-package pl.coderslab.mytrans.controller;
+package pl.coderslab.trucktrans.truck;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.mytrans.model.Driver;
-import pl.coderslab.mytrans.model.Truck;
-import pl.coderslab.mytrans.repository.DriverRepository;
-import pl.coderslab.mytrans.repository.TruckRepository;
+import pl.coderslab.trucktrans.driver.DriverRepository;
+import pl.coderslab.trucktrans.model.Driver;
+import pl.coderslab.trucktrans.model.Tractor;
 
 import javax.validation.Valid;
 import java.util.Arrays;
@@ -26,32 +25,32 @@ public class TruckController {
 
     @GetMapping
     public String add(Model model) {
-        model.addAttribute("truck", new Truck());
+        model.addAttribute("truck", new Tractor());
         return "trucks/add";
     }
 
     @PostMapping
-    public String save(@ModelAttribute @Valid Truck truck, BindingResult bindingResult) {
+    public String save(@ModelAttribute @Valid Tractor tractor, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "trucks/add";
         }
-        truckRepository.save(truck);
+        truckRepository.save(tractor);
         return "redirect:/trucks/list";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable long id, Model model) {
-        Optional<Truck> truck = truckRepository.findById(id);
+        Optional<Tractor> truck = truckRepository.findById(id);
         model.addAttribute("truck", truck.orElseThrow(IllegalArgumentException::new));
         return "trucks/edit";
     }
 
     @PostMapping("/edit")
-    public String update(@ModelAttribute @Valid Truck truck, BindingResult bindingResult) {
+    public String update(@ModelAttribute @Valid Tractor tractor, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "trucks/edit";
         }
-        truckRepository.save(truck);
+        truckRepository.save(tractor);
         return "redirect:/trucks/list";
     }
 

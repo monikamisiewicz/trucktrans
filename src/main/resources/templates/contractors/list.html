@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="fragment :: head"></div>
+<body>
+<div th:insert="fragment :: header"></div>
+
+
+<h1>Company data</h1>
+
+<div th:switch="${company}">
+    <h2 th:case="null">No company data yet!</h2>
+    <div th:case="*">
+        <h2>Company data</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>NIP</th>
+                <th>Street</th>
+                <th>Street number</th>
+                <th>Post code</th>
+                <th>Place</th>
+                <th>Payment details</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="companyData : ${company}">
+                <td th:text="${companyData.name}"></td>
+                <td th:text="${companyData.nip}"></td>
+                <td th:text="${companyData.street}"></td>
+                <td th:text="${companyData.streetNumber}"></td>
+                <td th:text="${companyData.postCode}"></td>
+                <td th:text="${companyData.place}"></td>
+                <td th:text="${companyData.bank}">
+<!--                    ${companyData.iban}-->
+                </td>
+                <td><a th:href="@{edit/{id}(id=${companyData.id})}">Edit</a></td>
+                <td><a th:href="@{company/delete/{id}(id=${companyData.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/company">Add new company data</a></p>
+    <p><a href="/">Back</a></p>
+</div>
+
+
+
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
+
+<div th:insert="fragment :: footer"></div>
+</body>
+</html>
