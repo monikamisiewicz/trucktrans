@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="fragment :: head"></div>
+<body>
+<div th:insert="fragment :: header"></div>
+
+<div class="container">
+<h3>Edit order</h3>
+<form th:action="@{/orders/edit}"
+      th:object="${order}"
+      method="post">
+
+    <input type="hidden" th:field="*{id}">
+
+    <div class="form-row">
+        <div class="form-group col-md-5">
+            <label for="date">Order date</label>
+            <div class="input-group date" data-date-format="dd/mm/yyyy">
+                <input type="text" class="form-control" id="date" autocomplete="off" th:field="*{date}"/>
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                </div>
+            </div>
+        </div>
+        <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></span>
+
+        <div class="form-group col-md-5">
+            <label for="orderNumber">Order number</label>
+            <input class="form-control" type="text" th:field="*{orderNumber}" id="orderNumber">
+        </div>
+        <span th:if="${#fields.hasErrors('orderNumber')}" th:errors="*{orderNumber}"></span>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-5">
+            <label for="directionFrom">Direction from</label>
+            <input class="form-control" type="text" th:field="*{directionFrom}" id="directionFrom">
+        </div>
+        <span th:if="${#fields.hasErrors('directionFrom')}" th:errors="*{directionFrom}"></span>
+
+        <div class="form-group col-md-5">
+            <label for="directionTo">Direction to</label>
+            <input class="form-control" type="text" th:field="*{directionTo}" id="directionTo">
+        </div>
+        <span th:if="${#fields.hasErrors('directionTo')}" th:errors="*{directionTo}"></span>
+    </div>
+
+
+    <div class="form-row">
+        <div class="form-group col-md-5">
+            <label for="goods">Goods</label>
+            <input class="form-control" type="text" th:field="*{goods}" id="goods">
+        </div>
+        <span th:if="${#fields.hasErrors('goods')}" th:errors="*{goods}"></span>
+
+        <div class="form-group col-md-5">
+            <label for="unit">Unit:</label>
+            <input class="form-control" type="text" th:field="*{unit}" id="unit">
+        </div>
+        <span th:if="${#fields.hasErrors('unit')}" th:errors="*{unit}"></span>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-5">
+            <label for="quantity">Quantity:</label>
+            <input class="form-control" type="number" min="0" step="0.01" th:field="*{quantity}" id="quantity">
+        </div>
+        <span th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></span>
+        <div class="form-group col-md-5">
+            <label for="value">Net value</label>
+            <input class="form-control" type="number" min="0" step="0.01" th:field="*{value}" id="value">
+        </div>
+        <span th:if="${#fields.hasErrors('value')}" th:errors="*{value}"></span>
+    </div>
+
+
+    <div class="form-row">
+        <div class="form-group col-md-5">
+            <label for="contractorSelect">Select Contractor:</label>
+            <select class="form-control" id="contractorSelect" th:field="*{contractor.id}">
+                <option th:text="--" th:value="null"></option>
+                <option th:each="contractor : ${contractors}"
+                        th:text="${contractor.name}"
+                        th:value="${contractor.id}">
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group col-md-5">
+            <label for="companySelect">Select Company:</label>
+            <select class="form-control" id="companySelect" th:field="*{company.id}">
+                <option selected="selected" th:each="companyData : ${company}"
+                        th:text="${companyData.name}"
+                        th:value="${companyData.id}">
+                </option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="driverSelect">Select Driver:</label>
+            <select class="form-control" id="driverSelect" th:field="*{drivers}">
+                <option th:text="--" th:value="null"></option>
+                <option th:each="driver : ${drivers}"
+                        th:text="${driver.getFullName()}"
+                        th:value="${driver.id}">
+                </option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="form-row">
+        <div class="form-group col-md-5">
+            <label for="terms">Terms of contract</label>
+            <textarea class="form-control" type="text" th:field="*{terms}" id="terms"></textarea>
+        </div>
+        <span th:if="${#fields.hasErrors('terms')}" th:errors="*{terms}"></span>
+    </div>
+
+    <div>
+        <button class="btn btn-primary" type="submit">Submit form</button>
+        <button class="btn btn-primary" type="reset">Reset</button>
+    </div>
+</form>
+</div>
+
+
+
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
+
+<script>
+    $('.input-group.date').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+</script>
+
+
+<div th:insert="fragment :: footer"></div>
+</body>
+</html>

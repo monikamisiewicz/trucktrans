@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="fragment :: head"></div>
+<body>
+<div th:insert="fragment :: header"></div>
+<div th:insert="fragment :: menu"></div>
+
+
+<h1 class="text-center">Invoice no. <span th:text="${invoice.invoiceNumber}"></span></h1>
+
+<div class="form-row">
+    <div class="border form-group col-md-5">
+        <h3>Supplier</h3>
+        Name: <strong th:text="${invoice.company.name}"></strong><br>
+        NIP: <span th:text="${invoice.company.nip}"></span><br>
+        <span th:text="${invoice.company.street}"></span> <span
+            th:text="${invoice.company.streetNumber}"></span><br>
+        <span th:text="${invoice.company.postCode}"></span> <span th:text="${invoice.company.place}"></span><br>
+    </div>
+
+    <div class="border form-group col-md-5">
+        Place of issue: <span th:text="${invoice.place}"></span><br>
+        Date of invoice: <span th:text="${invoice.paymentDate}"></span><br>
+        Date of service: <span th:text="${invoice.serviceDate}"></span><br>
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="border form-group col-md-5">
+        <h3>Customer</h3>
+        <div>
+            Name: <strong th:text="${invoice.contractor.name}"></strong><br>
+            NIP: <span th:text="${invoice.contractor.nip}"></span><br>
+            <span th:text="${invoice.contractor.street}"></span> <span
+                th:text="${invoice.contractor.streetNumber}"></span><br>
+            <span th:text="${invoice.contractor.postCode}"></span> <span
+                th:text="${invoice.contractor.place}"></span><br>
+        </div>
+    </div>
+    <div class="border form-group col-md-5">
+        <h5>Payment Details</h5>
+        <p>
+            Payment date: <span th:text="${invoice.getPaymentDate()}"></span><br>
+            Payment method: <span th:text="${invoice.paymentMethod}"></span><br>
+            Bank: <span th:text="${invoice.company.bank}"></span><br>
+            Account number: <strong th:text="${invoice.company.iban}"></strong><br>
+        </p>
+    </div>
+</div>
+
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+    <tr>
+        <th>#</th>
+        <th>Goods/Service description</th>
+        <th>Unit</th>
+        <th>Quantity</th>
+        <th>Unit price</th>
+        <th>Net amount</th>
+        <th>VAT rate</th>
+        <th>VAT amount</th>
+        <th>Gross amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="items, iterationStatus : ${items}">
+        <td th:text=${iterationStatus.count}></td>
+        <td th:text="${invoice.invoiceDate}"></td>
+        <td th:text="${invoice.getPaymentDate()}"></td>
+        <td th:text="${invoice.serviceDescription}"></td>
+        <td th:text="${invoice.unit}"></td>
+        <td th:text="${invoice.quantity}"></td>
+        <td th:text="${invoice.unitPrice}"></td>
+        <td th:text="${invoice.getNetAmount()}"></td>
+        <td th:text="${invoice.vatRateInPercent} + '%'"></td>
+        <td th:text="${invoice.getVatAmount()}"></td>
+        <th class="thead-dark" th:text="${invoice.getGrossAmount()}">
+        <td th:text="${invoice.contractor.name}"></td>
+        <td th:text="${invoice.annotations}"></td>
+    </tr>
+
+    </tbody>
+</table>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+
+<div th:insert="fragment :: footer"></div>
+</body>
+</html>

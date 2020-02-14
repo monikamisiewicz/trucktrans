@@ -1,10 +1,256 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+<div th:insert="fragment :: head"></div>
+<body>
+<div th:insert="fragment :: header"></div>
+<div th:insert="fragment :: menu"></div>
+
+<div class="container">
+    <h3>Edit invoice</h3>
+    <form th:action="@{/invoices/edit}"
+          th:object="${invoice}"
+          method="post">
+
+        <input type="hidden" th:field="*{id}">
+
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label for="invoiceNumber">Invoice Number:</label>
+                <input class="form-control" type="text" th:field="*{invoiceNumber}" id="invoiceNumber">
+            </div>
+            <span th:if="${#fields.hasErrors('invoiceNumber')}" th:errors="*{invoiceNumber}"></span>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label for="invoiceDate">InvoiceDate:</label>
+                <div class="input-group date" data-date-format="dd/mm/yyyy">
+                    <input type="text" class="form-control" id="invoiceDate" autocomplete="off"
+                           th:field="*{invoiceDate}"/>
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                    </div>
+                </div>
+            </div>
+            <span th:if="${#fields.hasErrors('invoiceDate')}" th:errors="*{invoiceDate}"></span>
+
+            <div class="form-group col-md-5">
+                <label for="serviceDate">ServiceDate</label>
+                <div class="input-group date" data-date-format="dd/mm/yyyy">
+                    <input type="text" class="form-control" id="serviceDate" autocomplete="off"
+                           th:field="*{serviceDate}"/>
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                    </div>
+                </div>
+            </div>
+            <span th:if="${#fields.hasErrors('serviceDate')}" th:errors="*{serviceDate}"></span>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label for="place">Place</label>
+                <input class="form-control" type="text" th:field="*{place}" id="place">
+            </div>
+            <span th:if="${#fields.hasErrors('place')}" th:errors="*{place}"></span>
+            <div class="form-group col-md-5">
+                <label for="days">Number of days to pay:</label>
+                <input class="form-control" type="number" min="0" step="1" th:field="*{days}" id="days">
+            </div>
+            <span th:if="${#fields.hasErrors('days')}" th:errors="*{days}"></span>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label for="paymentMethod">Select payment method:</label>
+                <select class="form-control" id="paymentMethod" th:field="*{paymentMethod}">
+                    <option th:text="--" th:value="null"></option>
+                    <option th:each="paymentMethod : ${paymentMethods}"
+                            th:value="${paymentMethod}"
+                            th:text="${paymentMethod}">
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label for="contractorSelect">Select Contractor:</label>
+                <select class="form-control" id="contractorSelect" th:field="*{contractor.id}">
+                    <option th:text="--" th:value="null"></option>
+                    <option th:each="contractor : ${contractors}"
+                            th:text="${contractor.name}"
+                            th:value="${contractor.id}">
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-md-5">
+                <label for="companySelect">Select Company:</label>
+                <select class="form-control" id="companySelect" th:field="*{company.id}">
+                    <option selected="selected" th:each="companyData : ${company}"
+                            th:text="${companyData.name}"
+                            th:value="${companyData.id}">
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label for="annotations">Annotations:</label>
+                <textarea class="form-control" th:field="*{annotations}" id="annotations"></textarea>
+            </div>
+            <span th:if="${#fields.hasErrors('annotations')}" th:errors="*{annotations}"></span>
+            <div class="form-group col-md-5">
+                <label for="isPaid">Is paid?</label>
+                <select class="custom-select" th:field="*{isPaid}" id="isPaid">
+                    <option selected="selected" value="false">Choose</option>
+                    <option class="btn-outline-danger" value="false">Not paid</option>
+                    <option class="btn-outline-success" value="true">Paid</option>
+                </select>
+            </div>
+        </div>
+
+
+
+
+        <table class="table table-hover small-text" id="tb">
+            <tr class="tr-header">
+                <th>Service/Goods description</th>
+                <th>Unit</th>
+                <th>Quantity</th>
+                <th>Unit price</th>
+                <th>Vat rate %</th>
+                <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore" title="Add new item"><i class="fas fa-plus fa-1x"></i></a></th>
+            <tr>
+                <td>
+                    <label for="serviceDescription"></label>
+                    <textarea class="form-control" th:field="*{serviceDescription}" id="serviceDescription"></textarea>
+                    <span th:if="${#fields.hasErrors('serviceDescription')}" th:errors="*{serviceDescription}"></span>
+                </td>
+
+                <td>
+                    <label for="unit"></label>
+                    <input class="form-control" type="text" th:field="*{unit}" id="unit">
+                    <span th:if="${#fields.hasErrors('unit')}" th:errors="*{unit}"></span>
+                </td>
+
+                <td>
+                    <label for="quantity"></label>
+                    <input class="form-control" type="number" min="0" step="0.01" th:field="*{quantity}" id="quantity">
+                    <span th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></span>
+                </td>
+
+                <td>
+                    <label for="unitPrice"></label>
+                    <input class="form-control" type="number" min="0" step="0.01" th:field="*{unitPrice}"
+                           id="unitPrice">
+                    <span th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}"></span>
+                </td>
+
+                <td>
+                    <label for="vatRateInPercent"></label>
+                    <input class="form-control" type="number" min="0" step="1" th:field="*{vatRateInPercent}"
+                           id="vatRateInPercent">
+                    <span th:if="${#fields.hasErrors('vatRateInPercent')}" th:errors="*{vatRateInPercent}"></span>
+                </td>
+
+                <td><a href='javascript:void(0);' class='remove'><i class="fas fa-minus fa-1x"></i></a>
+                </td>
+            </tr>
+        </table>
+
+
+
+
+
+        <!--        <div class="form-row">-->
+        <!--            <div class="form-group col-md-5">-->
+        <!--                <label for="serviceDescription">Service/goods description</label>-->
+        <!--                <textarea class="form-control" th:field="*{serviceDescription}" id="serviceDescription"></textarea>-->
+        <!--            </div>-->
+        <!--            <span th:if="${#fields.hasErrors('serviceDescription')}" th:errors="*{serviceDescription}"></span>-->
+        <!--        </div>-->
+
+
+        <!--        <div class="form-row">-->
+        <!--            <div class="form-group col-md-5">-->
+        <!--                <label for="unit">Unit:</label>-->
+        <!--                <input class="form-control" type="text" th:field="*{unit}" id="unit">-->
+        <!--            </div>-->
+        <!--            <span th:if="${#fields.hasErrors('unit')}" th:errors="*{unit}"></span>-->
+        <!--            <div class="form-group col-md-5">-->
+        <!--                <label for="quantity">Quantity:</label>-->
+        <!--                <input class="form-control" type="number" min="0" step="0.01" th:field="*{quantity}" id="quantity">-->
+        <!--            </div>-->
+        <!--            <span th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></span>-->
+        <!--        </div>-->
+
+        <!--        <div class="form-row">-->
+        <!--            <div class="form-group col-md-5">-->
+        <!--                <label for="unitPrice">Unit price:</label>-->
+        <!--                <input class="form-control" type="number" min="0" step="0.01" th:field="*{unitPrice}" id="unitPrice">-->
+        <!--            </div>-->
+        <!--            <span th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}"></span>-->
+        <!--            <div class="form-group col-md-5">-->
+        <!--                <label for="vatRateInPercent">VAT rate %:</label>-->
+        <!--                <input class="form-control" type="number" min="0" step="1" th:field="*{vatRateInPercent}"-->
+        <!--                       id="vatRateInPercent">-->
+        <!--            </div>-->
+        <!--            <span th:if="${#fields.hasErrors('vatRateInPercent')}" th:errors="*{vatRateInPercent}"></span>-->
+        <!--        </div>-->
+
+
+        <div>
+            <button class="btn btn-primary" type="submit">Submit form</button>
+            <button class="btn btn-primary" type="reset">Reset</button>
+        </div>
+    </form>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+<!--<script src="../../static/js/app.js"></script>-->
+
+
+
+
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>-->
+<script>
+    $(function () {
+        $('#addMore').on('click', function () {
+            var data = $("#tb tr:eq(1)").clone(true).appendTo("#tb");
+            data.find("input").val('');
+        });
+        $(document).on('click', '.remove', function () {
+            var trIndex = $(this).closest("tr").index();
+            if (trIndex > 1) {
+                $(this).closest("tr").remove();
+            } else {
+                alert("Sorry!! Can't remove first row!");
+            }
+        });
+    });
+</script>
+
+<script>
+    $('.input-group.date').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+</script>
+
+<div th:insert="fragment :: footer"></div>
 </body>
 </html>

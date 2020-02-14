@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="fragment :: head"></div>
+<body>
+<div th:insert="fragment :: header"></div>
+<div th:insert="fragment :: menu"></div>
+
+<div th:switch="${company}">
+    <h2 th:case="null">No company data yet!</h2>
+    <div th:case="*">
+
+        <div class="container">
+            <h2>Company data</h2>
+            <p class="border" th:each="companyData : ${company}">
+                <strong th:text="${companyData.name}"></strong><br>
+                NIP: <span th:text="${companyData.nip}"></span><br>
+                <span th:text="${companyData.street}"></span> <span th:text="${companyData.streetNumber}"></span><br>
+                <span th:text="${companyData.postCode}"></span> <span th:text="${companyData.place}"></span><br>
+                Bank: <span th:text="${companyData.bank}"></span><br>
+                Account number: <span th:text="${companyData.iban}"></span><br>
+
+                <button class="btn btn-outline-primary"><a th:href="@{edit/{id}(id=${companyData.id})}">Edit</a>
+                </button>
+                <button class="btn btn-outline-danger"><a th:href="@{delete/{id}(id=${companyData.id})}">Delete</a>
+                </button>
+            </p>
+        </div>
+
+        <div class="container">
+            <button class="btn btn-outline-success"><a href="/company" th:href="@{/company}"> New company data </a>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<div th:insert="fragment :: footer"></div>
+</body>
+</html>

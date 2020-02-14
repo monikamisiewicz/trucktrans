@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link th:rel="stylesheet" type="text/css" th:href="@{css/bootstrap-datepicker.standalone.css}"/>
+    <script src="https://kit.fontawesome.com/503fc7ffdd.js" crossorigin="anonymous"></script>
+
+    <title>Truck Trans</title>
+</head>
+
+<body>
+
+<div class="container" th:fragment="header">
+    <!--    <h2>Truck Trans!</h2>-->
+</div>
+
+<div th:fragment="menu">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <img src="../static/images/logo1.png" width="30" height="30" class="d-inline-block align-top" alt="">
+
+        <a class="navbar-brand" href="#">TRUCK TRANS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="fleet.html" th:href="@{/fleet}">Fleet</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="drivers/list.html" th:href="@{/drivers/list}">Drivers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contractors/list.html" th:href="@{/contractors/list}">Contractors</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="orders/list.html" th:href="@{/orders/list}">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="invoices/list.html" th:href="@{/invoices/list}">Invoices</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="company/data.html" th:href="@{/company/data}">Company</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+
+    <!--                    <img alt="Logo" th:src="@{/images/logo1.png}"/>-->
+
+
+</div>
+
+
+<footer th:fragment="footer">
+    <p>©2020. Truck Trans </p>
+</footer>
+
+</body>
+</html>

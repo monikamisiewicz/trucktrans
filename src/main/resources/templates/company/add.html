@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="fragment :: head"></div>
+<body>
+<div th:insert="fragment :: header"></div>
+<div th:insert="fragment :: menu"></div>
+
+
+
+<!--<form action="#" th:action="@{/}" th:object="${company}" method="post">-->
+<div class="container">
+    <h3>Set company data</h3>
+    <form th:action="@{/company}" th:object="${company}" method="post">
+
+
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label for="name">Name</label>
+                <input class="form-control" type="text" th:field="*{name}" id="name">
+            </div>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            <div class="form-group col-md-5">
+                <label for="nip">Nip</label>
+                <input class="form-control" type="text" th:field="*{nip}" id="nip">
+            </div>
+            <span th:if="${#fields.hasErrors('nip')}" th:errors="*{nip}"></span>
+        </div>
+
+
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label for="street">Street</label>
+                <input class="form-control" type="text" th:field="*{street}" id="street">
+            </div>
+            <span th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></span>
+            <div class="form-group col-md-3">
+                <label for="streetNumber">Street number</label>
+                <input class="form-control" type="text" th:field="*{streetNumber}" id="streetNumber">
+            </div>
+            <span th:if="${#fields.hasErrors('streetNumber')}" th:errors="*{streetNumber}"></span>
+        </div>
+
+
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label for="place">Place</label>
+                <input class="form-control" type="text" th:field="*{place}" id="place">
+            </div>
+            <span th:if="${#fields.hasErrors('place')}" th:errors="*{place}"></span>
+            <div class="form-group col-md-3">
+                <label for="postCode">Post Code</label>
+                <input class="form-control" type="text" th:field="*{postCode}" id="postCode" placeholder="xx-xxx">
+            </div>
+            <span th:if="${#fields.hasErrors('postCode')}" th:errors="*{postCode}"></span>
+        </div>
+
+
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label for="iban">IBAN</label>
+                <input class="form-control" type="text" th:field="*{iban}" id="iban">
+            </div>
+            <span th:if="${#fields.hasErrors('iban')}" th:errors="*{iban}"></span>
+            <div class="form-group col-md-5">
+                <label for="bank">Bank</label>
+                <input class="form-control" type="text" th:field="*{bank}" id="bank">
+            </div>
+            <span th:if="${#fields.hasErrors('bank')}" th:errors="*{bank}"></span>
+        </div>
+
+        <div>
+            <button class="btn btn-primary" type="submit">Submit form</button>
+            <button class="btn btn-primary" type="reset">Reset</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<div th:insert="fragment :: footer"></div>
+</body>
+</html>

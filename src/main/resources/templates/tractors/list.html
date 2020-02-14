@@ -4,16 +4,16 @@
 <div th:insert="fragment :: head"></div>
 <body>
 <div th:insert="fragment :: header"></div>
+<div th:insert="fragment :: menu"></div>
 
-<button>
-    <a href="/" th:href="@{/}">Back</a>
-</button>
 
-<h3>Trucks</h3>
-<table>
-    <thead>
+<h3>Tractors</h3>
+<button class="btn btn-outline-success"><a href="/tractors" th:href="@{/tractors}"> New tractor </a></button>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
     <tr>
-        <th>Id</th>
+        <th>#</th>
         <th>Make</th>
         <th>Model</th>
         <th>Registration number</th>
@@ -23,17 +23,15 @@
     </thead>
     <tbody>
 
-    <tr th:each="truck: ${trucks}">
-        <td th:text="${truck.id}"></td>
-        <td th:text="${truck.make}"></td>
-        <td th:text="${truck.model}"></td>
-        <td th:text="${truck.registrationNumber}"></td>
-        <td th:text="${truck.vin}"></td>
+    <tr th:each="tractor, iterationStatus: ${tractors}">
+        <td th:text="${iterationStatus.count}"></td>
+        <td th:text="${tractor.make}"></td>
+        <td th:text="${tractor.model}"></td>
+        <td th:text="${tractor.registrationNumber}"></td>
+        <td th:text="${tractor.vin}"></td>
         <td>
-            <button><a href="/trucks" th:href="@{/trucks}"> New truck </a></button>
-            <button><a th:href="@{/edit/{id}(id=${truck.id})}">Edit</a></button>
-            <button><a th:href="@{/delete/{id}(id=${truck.id})}">Delete</a></button>
-        </td>
+            <a th:href="@{edit/{id}(id=${tractor.id})}">Edit</a>
+            <a th:href="@{delete/{id}(id=${tractor.id})}">Delete</a></td>
     </tr>
 
     </tbody>

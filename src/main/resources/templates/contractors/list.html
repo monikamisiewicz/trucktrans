@@ -4,16 +4,17 @@
 <div th:insert="fragment :: head"></div>
 <body>
 <div th:insert="fragment :: header"></div>
+<div th:insert="fragment :: menu"></div>
 
 
-<h1>Company data</h1>
-
-<div th:switch="${company}">
-    <h2 th:case="null">No company data yet!</h2>
+<div th:switch="${contractors}">
+    <h2 th:case="null">No contractors yet!</h2>
     <div th:case="*">
-        <h2>Company data</h2>
-        <table>
-            <thead>
+        <h2>Contractor list</h2>
+        <button class="btn btn-outline-success"><a href="/contractors" th:href="@{/contractors}"> New contractor </a>
+        </button>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
             <tr>
                 <th>Name</th>
                 <th>NIP</th>
@@ -21,42 +22,38 @@
                 <th>Street number</th>
                 <th>Post code</th>
                 <th>Place</th>
-                <th>Payment details</th>
-                <th>Actions</th>
+                <th colspan="2">Actions</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="companyData : ${company}">
-                <td th:text="${companyData.name}"></td>
-                <td th:text="${companyData.nip}"></td>
-                <td th:text="${companyData.street}"></td>
-                <td th:text="${companyData.streetNumber}"></td>
-                <td th:text="${companyData.postCode}"></td>
-                <td th:text="${companyData.place}"></td>
-                <td th:text="${companyData.bank}">
-<!--                    ${companyData.iban}-->
+            <tr th:each="contractor : ${contractors}">
+                <th th:text="${contractor.name}"></th>
+                <td th:text="${contractor.nip}"></td>
+                <td th:text="${contractor.street}"></td>
+                <td th:text="${contractor.streetNumber}"></td>
+                <td th:text="${contractor.postCode}"></td>
+                <td th:text="${contractor.place}"></td>
+                <td>
+                    <a th:href="@{edit/{id}(id=${contractor.id})}">Edit</a>
+                    <a th:href="@{delete/{id}(id=${contractor.id})}">Delete</a>
                 </td>
-                <td><a th:href="@{edit/{id}(id=${companyData.id})}">Edit</a></td>
-                <td><a th:href="@{company/delete/{id}(id=${companyData.id})}">Delete</a></td>
             </tr>
             </tbody>
         </table>
     </div>
-    <p><a href="/company">Add new company data</a></p>
-    <p><a href="/">Back</a></p>
 </div>
 
 
-
-<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
 
 <div th:insert="fragment :: footer"></div>
 </body>

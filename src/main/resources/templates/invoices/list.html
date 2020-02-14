@@ -1,10 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+<div th:insert="fragment :: head"></div>
+<body>
+<div th:insert="fragment :: header"></div>
+<div th:insert="fragment :: menu"></div>
+
+
+<h3>Invoice list</h3>
+<button class="btn btn-outline-success"><a href="/invoices" th:href="@{/invoices}"> New invoice </a></button>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+    <tr>
+        <th>Invoice number</th>
+        <th>Invoice date</th>
+        <th>Payment date</th>
+        <th>Contractor</th>
+        <th>Net amount</th>
+        <th>VAT rate %</th>
+        <th>VAT amount</th>
+        <th>Gross amount</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tbody>
+    <tr th:each="invoice : ${invoices}">
+        <th class="thead-dark" th:text="${invoice.invoiceNumber}">
+        <td th:text="${invoice.invoiceDate}"></td>
+        <td th:text="${invoice.getPaymentDate()}"></td>
+        <td th:text="${invoice.contractor.name}"></td>
+        <td th:text="${invoice.getNetAmount()}"></td>
+        <td th:text="${invoice.vatRateInPercent} + '%'"></td>
+        <td th:text="${invoice.getVatAmount()}"></td>
+        <th class="thead-dark" th:text="${invoice.getGrossAmount()}">
+        <td>
+            <span class="text-success" th:if="${invoice.isPaid}">Paid</span>
+            <span class="text-danger" th:unless="${invoice.isPaid}">Not Paid</span>
+        </td>
+        <td>
+            <a th:href="@{details/{id}(id=${invoice.id})}">Details</a>
+            <a th:href="@{edit/{id}(id=${invoice.id})}">Edit</a>
+            <a th:href="@{delete/{id}(id=${invoice.id})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+
+<div th:insert="fragment :: footer"></div>
 </body>
 </html>

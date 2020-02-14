@@ -1,10 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+<div th:insert="fragment :: head"></div>
+<body>
+<div th:insert="fragment :: header"></div>
+<div th:insert="fragment :: menu"></div>
+
+<div class="container">
+    <h3>Add new trailer</h3>
+    <form th:action="@{/trailers}" th:object="${trailer}" method="post">
+
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label for="makeSelect">Select Manufacturer:</label>
+                <select class="form-control" id="makeSelect" th:field="*{make}">
+                    <option th:text="--" th:value="null"></option>
+                    <option th:each="make : ${makes}"
+                            th:value="${make}"
+                            th:text="${make}">
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-md-5">
+                <label for="model">Model:</label>
+                <input class="form-control" th:field="*{model}" id="model">
+            </div>
+            <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></span>
+        </div>
+
+
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label for="registrationNumber">registrationNumber</label>
+                <input class="form-control" type="text" th:field="*{registrationNumber}" id="registrationNumber">
+            </div>
+            <span th:if="${#fields.hasErrors('registrationNumber')}" th:errors="*{registrationNumber}"></span>
+
+            <div class="form-group col-md-5">
+                <label for="vin">VIN</label>
+                <input class="form-control" type="text" th:field="*{vin}" id="vin">
+            </div>
+            <span th:if="${#fields.hasErrors('vin')}" th:errors="*{vin}"></span>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label for="nextTechnicalInspection">Next technical inspection</label>
+                <div class="input-group date" data-date-format="dd/mm/yyyy">
+                    <input type="text" class="form-control" id="nextTechnicalInspection" autocomplete="off"
+                           th:field="*{nextTechnicalInspection}"/>
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                    </div>
+                </div>
+            </div>
+            <span th:if="${#fields.hasErrors('nextTechnicalInspection')}" th:errors="*{nextTechnicalInspection}"></span>
+
+            <div class="form-group col-md-5">
+                <label for="insuranceExpires">Insurance expiration date</label>
+                <div class="input-group date" data-date-format="dd/mm/yyyy">
+                    <input type="text" class="form-control" id="insuranceExpires" autocomplete="off"
+                           th:field="*{insuranceExpires}"/>
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                    </div>
+                </div>
+            </div>
+            <span th:if="${#fields.hasErrors('insuranceExpires')}" th:errors="*{insuranceExpires}"></span>
+        </div>
+
+        <div>
+            <button class="btn btn-primary" type="submit">Submit form</button>
+            <button class="btn btn-primary" type="reset">Reset</button>
+        </div>
+
+    </form>
+</div>
+
+
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
+
+<script>
+    $('.input-group.date').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+</script>
+
+<div th:insert="fragment :: footer"></div>
 </body>
 </html>
