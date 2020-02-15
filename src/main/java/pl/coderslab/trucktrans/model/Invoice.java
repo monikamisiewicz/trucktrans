@@ -12,6 +12,7 @@ import pl.coderslab.trucktrans.converters.LocalDateConverter;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 @Getter
@@ -92,7 +93,8 @@ public class Invoice {
 
     @Transient
     public Double getNetAmount() {
-        return quantity * unitPrice;
+        double netAmount =  quantity * unitPrice;
+        return netAmount;
     }
 
     @Transient
@@ -104,6 +106,11 @@ public class Invoice {
     public Double getGrossAmount() {
         return getNetAmount() + getVatAmount();
     }
+
+//    @Transient
+//    public Double NetAmountTotal() {
+//        return ;
+//    }
 
 
 }

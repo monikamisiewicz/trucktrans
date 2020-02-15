@@ -24,7 +24,7 @@
 <div class="form-row">
     <div class="form-group col-md-5">
         <form class="form-inline my-2 my-lg-0" th:action="@{/orders/contractor}" method="get">
-            <!--                <label>Search by Contractor</label>-->
+<!--                            <label>Search by Contractor</label>-->
             <select class="form-control mr-sm-2" type="search" name="contractor" aria-label="Search">
                 <option th:text="--" th:value="null"></option>
                 <option selected>Search by contractor</option>
@@ -69,22 +69,22 @@
 
 
 
-<div>
-    <form th:action="@{/orders/date}" method="get">
-        <div class="form-row">
-            <div class="form-group col-md-5">
-                <label for="dateSearch"></label>
-                <div class="input-group date" data-date-format="dd/mm/yyyy">
-                    <input type="text" class="form-control" name="date" id="dateSearch" autocomplete="off"/>
-                    <div class="input-group-append">
-                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                    </div>
-                </div>
-            </div>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </div>
-    </form>
-</div>
+<!--<div>-->
+<!--    <form th:action="@{/orders/date}" method="get">-->
+<!--        <div class="form-row">-->
+<!--            <div class="form-group col-md-5">-->
+<!--                <label for="dateSearch"></label>-->
+<!--                <div class="input-group date" data-date-format="dd/mm/yyyy">-->
+<!--                    <input type="text" class="form-control" name="date" id="dateSearch" autocomplete="off"/>-->
+<!--                    <div class="input-group-append">-->
+<!--                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--</div>-->
 
 
 

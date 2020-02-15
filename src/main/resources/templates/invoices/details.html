@@ -65,8 +65,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="items, iterationStatus : ${items}">
-        <td th:text=${iterationStatus.count}></td>
+<!--    <tr th:each="items, iterationStatus : ${items}">-->
+<!--        <td th:text=${iterationStatus.count}></td>-->
         <td th:text="${invoice.invoiceDate}"></td>
         <td th:text="${invoice.getPaymentDate()}"></td>
         <td th:text="${invoice.serviceDescription}"></td>
