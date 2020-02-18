@@ -25,18 +25,17 @@
         <th>Actions</th>
     </tr>
     </thead>
-    <tbody>
 
     <tbody>
-    <tr th:each="invoice : ${invoices}">
-        <th class="thead-dark" th:text="${invoice.invoiceNumber}">
+    <tr th:each="invoice: ${invoices}">
+        <td th:text="${invoice.invoiceNumber}"></td>
         <td th:text="${invoice.invoiceDate}"></td>
         <td th:text="${invoice.getPaymentDate()}"></td>
         <td th:text="${invoice.contractor.name}"></td>
-        <td th:text="${invoice.getNetAmount()}"></td>
-        <td th:text="${invoice.vatRateInPercent} + '%'"></td>
-        <td th:text="${invoice.getVatAmount()}"></td>
-        <th class="thead-dark" th:text="${invoice.getGrossAmount()}">
+        <td th:text="${invoice.getTotalNetAmount()} + ' zł'"></td>
+        <td th:text="${invoice.getVatRateInPercent()} + '%'"></td>
+        <td th:text="${invoice.getTotalVatAmount()} + ' zł'"></td>
+        <th class="thead-dark" th:text="${invoice.getTotalGrossAmount()} + ' zł'">
         <td>
             <span class="text-success" th:if="${invoice.isPaid}">Paid</span>
             <span class="text-danger" th:unless="${invoice.isPaid}">Not Paid</span>
@@ -46,7 +45,9 @@
             <a th:href="@{edit/{id}(id=${invoice.id})}">Edit</a>
             <a th:href="@{delete/{id}(id=${invoice.id})}">Delete</a>
         </td>
+
     </tr>
+
     </tbody>
 </table>
 

@@ -98,6 +98,7 @@
                         th:text="${tractor.getTractorDetails()}">
                 </option>
             </select>
+        <span th:if="${#fields.hasErrors('tractor.id')}" th:errors="*{tractor.id}"></span>
     </div>
 
 
@@ -110,6 +111,7 @@
                         th:text="${trailer.getTrailerDetails()}">
                 </option>
             </select>
+        <span th:if="${#fields.hasErrors('trailer.id')}" th:errors="*{trailer.id}"></span>
     </div>
 
 

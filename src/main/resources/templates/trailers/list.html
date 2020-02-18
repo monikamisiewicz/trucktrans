@@ -15,7 +15,7 @@
     <tr>
         <th>#</th>
         <th>Make</th>
-        <th>Model</th>
+        <th>Body</th>
         <th>Registration number</th>
         <th>VIN</th>
         <th>Actions</th>
@@ -27,7 +27,7 @@
     <tr th:each="trailer, iterationStatus: ${trailers}">
         <td th:text="${iterationStatus.count}"></td>
         <td th:text="${trailer.make}"></td>
-        <td th:text="${trailer.model}"></td>
+        <td th:text="${trailer.body}"></td>
         <td th:text="${trailer.registrationNumber}"></td>
         <td th:text="${trailer.vin}"></td>
         <td>

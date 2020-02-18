@@ -11,9 +11,12 @@ import pl.coderslab.trucktrans.converters.LocalDateConverter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,14 +30,17 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @Column(name = "invoice_number", unique = true)
     private String invoiceNumber;
 
+    @NotNull
     @Column(name = "invoice_date")
     @Convert(converter = LocalDateConverter.class)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate invoiceDate;
 
+    @NotNull
     @Column(name = "service_date")
     @Convert(converter = LocalDateConverter.class)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -43,30 +49,13 @@ public class Invoice {
     @Column(name = "place")
     private String place;
 
+    @NotNull
     @Range(min = 0)
     @Column(name = "days")
     private Integer days;
 
     @Column(name = "payment_method")
     private String paymentMethod;
-
-    @Column(name = "serviceDescription")
-    private String serviceDescription;
-
-    @Column(name = "unit")
-    private String unit;
-
-    @Range(min = 0)
-    @Column(name = "quantity", precision = 6, scale = 2)
-    private Double quantity;//BigDecimal
-
-    @Range(min = 0)
-    @Column(name = "unit_price", precision = 10, scale = 2)
-    private Double unitPrice;
-
-    @Range(min = 0, max = 100)
-    @Column(name = "vat_rate")
-    private Integer vatRateInPercent;
 
     @Size(max = 600)
     @Column(name = "annotations")
@@ -86,31 +75,57 @@ public class Invoice {
     @ManyToOne
     private Company company;
 
+    @OneToMany(mappedBy = "invoice")
+    private List<Item> items = new ArrayList<>();
+
     @Transient
     public LocalDate getPaymentDate() {
         return invoiceDate.plusDays(this.days);
     }
 
     @Transient
-    public Double getNetAmount() {
-        double netAmount =  quantity * unitPrice;
-        return netAmount;
+    public Double getTotalNetAmount() {
+        double totalNetAmount = 0.0;
+
+        for (Item item : items
+        ) {
+            double netAmount = item.getQuantity() * item.getUnitPrice();
+            totalNetAmount += Math.round(netAmount);
+        }
+        return totalNetAmount;
     }
 
     @Transient
-    public Double getVatAmount() {
-        return getNetAmount() * vatRateInPercent;
+    public Double getTotalVatAmount() {
+        double totalVatAmount = 0.0;
+
+        for (Item item : items
+        ) {
+            double vatAmount = item.getNetAmount() * item.getVatRateInPercent() * 0.01;
+            totalVatAmount += Math.round(vatAmount);
+        }
+        return totalVatAmount;
     }
 
     @Transient
-    public Double getGrossAmount() {
-        return getNetAmount() + getVatAmount();
+    public Double getTotalGrossAmount() {
+        double totalGrossAmount = 0.0;
+
+        for (Item item : items
+        ) {
+            double grossAmount = item.getNetAmount() + item.getVatAmount();
+            totalGrossAmount += Math.round(grossAmount);
+        }
+        return totalGrossAmount;
     }
 
-//    @Transient
-//    public Double NetAmountTotal() {
-//        return ;
-//    }
+    @Transient
+    public Integer getVatRateInPercent() {
+        if(items.isEmpty()) {
+            return 0;
+        }
 
+        return items.get(0).getVatRateInPercent();
+    }
 
 }

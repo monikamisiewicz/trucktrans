@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="fragment :: head"></div>
+<body>
+<div th:insert="fragment :: header"></div>
+<div th:insert="fragment :: menu"></div>
+
+
+<form th:action="@{/invoices/edit-item}" th:object="${invoice}" method="post">
+
+
+    <fieldset>
+
+        <table class="table table-hover small-text" id="tb">
+            <thead class="thead-dark">
+            <tr>
+                <th>Service/Goods description</th>
+                <th>Unit</th>
+                <th>Quantity</th>
+                <th>Unit price</th>
+                <th>Vat rate %</th>
+                <th>Delete item</th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+            <tr th:each="item, itemStat: *{items}">
+                <input type="hidden" th:field="*{items[__${itemStat.index}__].id}">
+                <td>
+                    <label for="serviceDescription">
+                        <textarea class="form-control" th:field="*{items[__${itemStat.index}__].serviceDescription} "
+                                  id="serviceDescription"></textarea>
+                    </label>
+                </td>
+                <td>
+                    <label for="unit">
+                        <input class="form-control" th:field="*{items[__${itemStat.index}__].unit}" id="unit"/>
+                    </label>
+                </td>
+                <td>
+                    <label for="quantity">
+                        <input class="form-control" type="number" min="0" step="0.01"
+                               th:field="*{items[__${itemStat.index}__].quantity} " id="quantity"/>
+                    </label>
+                </td>
+                <td>
+                    <label for="unitPrice">
+                        <input class="form-control" type="number" min="0" step="0.01"
+                               th:field="*{items[__${itemStat.index}__].unitPrice}" id="unitPrice"/>
+                    </label>
+                </td>
+                <td>
+                    <label for="vatRateInPercent">
+                        <input class="form-control" type="number" min="0" step="1"
+                               th:field="*{items[__${itemStat.index}__].vatRateInPercent}" id="vatRateInPercent"/>
+                    </label>
+                </td>
+                <td>
+                    <a class="fas fa-trash-alt" th:href="@{delete-item/{id}(id=${item.id})}"></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div>
+            <button class="btn btn-primary" type="submit">Submit form</button>
+            <button class="btn btn-primary" type="reset">Reset</button>
+        </div>
+    </fieldset>
+</form>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+<!--<script src="../../static/js/app.js"></script>-->
+
+
+<script>
+    $('.input-group.date').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+</script>
+
+<div th:insert="fragment :: footer"></div>
+</body>
+</html>

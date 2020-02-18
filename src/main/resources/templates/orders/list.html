@@ -109,6 +109,9 @@
         <th>Actions</th>
     </tr>
     </thead>
+    <tr th:if="${orders.isEmpty()}">
+        <td colspan="12"> No Orders Available </td>
+    </tr>
     <tbody>
     <tr th:each="order, loopCount : ${orders}">
         <td th:text="${loopCount.count}"></td>

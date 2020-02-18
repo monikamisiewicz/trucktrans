@@ -9,18 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.trucktrans.company.CompanyRepository;
 import pl.coderslab.trucktrans.contractor.ContractorRepository;
 import pl.coderslab.trucktrans.driver.DriverRepository;
-import pl.coderslab.trucktrans.model.Company;
-import pl.coderslab.trucktrans.model.Contractor;
-import pl.coderslab.trucktrans.model.Driver;
-import pl.coderslab.trucktrans.model.Invoice;
+import pl.coderslab.trucktrans.item.ItemRepository;
+import pl.coderslab.trucktrans.model.*;
 
 
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/invoices")
@@ -28,6 +24,7 @@ import java.util.Optional;
 public class InvoiceController {
 
     private final InvoiceRepository invoiceRepository;
+    private final ItemRepository itemRepository;
     private final DriverRepository driverRepository;
     private final CompanyRepository companyRepository;
     private final ContractorRepository contractorRepository;
@@ -44,8 +41,39 @@ public class InvoiceController {
             return "invoices/add";
         }
         invoiceRepository.save(invoice);
+        return "redirect:/invoices/" + invoice.getId() + "/items/add";
+    }
+
+    @GetMapping("/{id}/items/add")
+    public String addItem(@PathVariable long id, Model model) {
+        Optional<Invoice> invoiceOptional = invoiceRepository.findById(id);
+        Invoice invoice = invoiceOptional.get();
+        List<Item> items = new ArrayList<>();
+        for (int i = 0; i <= 2; i++) {
+            items.add(new Item());
+        }
+        invoice.setItems(items);
+        model.addAttribute("invoice", invoice);
+        return "items/add";
+    }
+
+    @PostMapping("/add")
+    public String saveItems(@ModelAttribute Invoice invoice, Model model) {
+        List<Item> items = invoice.getItems();
+        List<Item> filteredItems = items.stream()
+                .filter(item -> item.getQuantity() != null)
+                .filter(item -> item.getUnitPrice() != null)
+                .filter(item -> item.getVatRateInPercent() != null)
+                .collect(Collectors.toList());
+
+        filteredItems.forEach(item -> item.setInvoice(invoice));
+        itemRepository.saveAll(filteredItems);
+
         return "redirect:/invoices/list";
     }
+
+
+
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable long id, Model model) {
@@ -60,8 +88,34 @@ public class InvoiceController {
             return "invoices/edit";
         }
         invoiceRepository.save(invoice);
+        return "redirect:/invoices/" + invoice.getId() + "/items/edit";
+    }
+
+    @GetMapping("/{id}/items/edit")
+    public String editItem(@PathVariable long id, Model model) {
+        Optional<Invoice> invoiceOptional = invoiceRepository.findById(id);
+        Invoice invoice = invoiceOptional.get();
+        model.addAttribute("invoice", invoice);
+        return "items/edit";
+    }
+
+    @PostMapping("/edit-item")
+    public String updateItems(@ModelAttribute Invoice invoice, Model model) {
+        List<Item> items = invoice.getItems();
+        for (Item item: items) {
+           Item itemFromDB = itemRepository.getOne(item.getId());
+           itemFromDB.setServiceDescription(item.getServiceDescription());
+           itemFromDB.setQuantity(item.getQuantity());
+
+
+
+           itemRepository.save(itemFromDB);
+
+        }
+
         return "redirect:/invoices/list";
     }
+
 
     @GetMapping("/delete/{id}")
     public String deleteCheck(@PathVariable long id, Model model) {
@@ -72,9 +126,16 @@ public class InvoiceController {
     @GetMapping("/delete-action/{id}")
     public String delete(@PathVariable long id, @RequestParam("action") boolean action) {
         if (action) {
+            itemRepository.deleteAllByInvoiceId(id);
             invoiceRepository.deleteById(id);
         }
         return "redirect:/invoices/list";
+    }
+
+    @GetMapping("/{invoiceId}/items/delete-item/{id}")
+    public String deleteItem(@PathVariable long id, @PathVariable long invoiceId) {
+        itemRepository.deleteById(id);
+        return "redirect:/invoices/" + invoiceId + "/items/edit";
     }
 
 
@@ -123,7 +184,6 @@ public class InvoiceController {
         return "invoices/list";
     }
 
-    //problem z konwersją daty!!!!
     @GetMapping("/date-range")
     public String getByDateRange(@RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
                                  @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end, Model model) {
@@ -139,7 +199,7 @@ public class InvoiceController {
 
     @ModelAttribute("paymentMethods")
     public List<String> payments() {
-        return Arrays.asList("cash",  "pre-payment", "bank transfer");
+        return Arrays.asList("cash", "pre-payment", "bank transfer");
     }
 
     @ModelAttribute("company")
@@ -156,7 +216,6 @@ public class InvoiceController {
     public List<Driver> drivers() {
         return driverRepository.findAll();
     }
-
 
 
 }

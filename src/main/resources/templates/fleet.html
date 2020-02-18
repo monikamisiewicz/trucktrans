@@ -2,29 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <div th:insert="fragment :: head"></div>
-<body>
+<body class="">
 <div th:insert="fragment :: header"></div>
 <div th:insert="fragment :: menu"></div>
 
 
+<div class="container col-md-5 justify-content-center bg-dark">
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" th:src="@{/images/truck.jpg}" alt="Card image cap">
+        <div class="card-body ">
+            <h5 class="card-title text-center">FLEET</h5>
+        </div>
 
-<!--            <img src="../static/images/logo1.png" class="rounded img-thumbnail img-fluid" style="max-width: 100%; height: auto"-->
-<!--                 alt="Truck tractor">-->
-
-<!--            <img src="../static/images/logo.jpg" class="rounded img-thumbnail mx-auto " style="width: 300px"-->
-<!--                 alt="Semi-trailer">-->
-
-<div class="container col-md-5 justify-content-center">
-<div class="card justify-content-center" style="width: 18rem;">
-    <img class="card-img-top" src="../static/images/logo1.png" alt="Card image cap">
-    <div class="card-body">
-        <h5 class="card-title">FLEET</h5>
+        <div class="card-body">
+            <a class="btn btn-primary d-block p-2" href="tractors/list.html" th:href="@{/tractors/list}">Tractors</a>
+            <a class="btn btn-primary d-block p-2" href="trailers/list.html" th:href="@{/trailers/list}">Trailers</a>
+        </div>
     </div>
-
-    <div class="card-body">
-        <a class="btn btn-primary d-block p-2" href="tractors/list.html" th:href="@{/tractors/list}">Tractors</a>
-        <a class="btn btn-primary d-block p-2" href="trailers/list.html" th:href="@{/trailers/list}">Trailers</a>
-</div>
 </div>
 
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"

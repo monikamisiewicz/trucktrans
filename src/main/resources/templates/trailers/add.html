@@ -22,10 +22,16 @@
                 </select>
             </div>
             <div class="form-group col-md-5">
-                <label for="model">Model:</label>
-                <input class="form-control" th:field="*{model}" id="model">
+                <label for="bodySelect">Select Body:</label>
+                <select class="form-control" id="bodySelect" th:field="*{body}">
+                    <option th:text="--" th:value="null"></option>
+                    <option th:each="body : ${bodies}"
+                            th:value="${body}"
+                            th:text="${body}">
+                    </option>
+                </select>
             </div>
-            <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></span>
+            <span th:if="${#fields.hasErrors('body')}" th:errors="*{body}"></span>
         </div>
 
 

@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/drivers")
@@ -33,8 +34,14 @@ public class DriverController {
 
     @PostMapping
     public String save(@ModelAttribute("driver") @Valid Driver driver, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return "drivers/add";
+        }
+        if(driver.getTractor().getId()==null){
+            driver.setTractor(null);
+        }
+        if(driver.getTrailer().getId()==null){
+            driver.setTrailer(null);
         }
         driverRepository.save(driver);
         return "redirect:/drivers/list";
@@ -43,14 +50,28 @@ public class DriverController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable long id, Model model) {
         Optional<Driver> driver = driverRepository.findById(id);
+
         model.addAttribute("driver", driver.orElseThrow(IllegalArgumentException::new));
+        List<Trailer> trailers = trailers();
+        trailers.add(driver.get().getTrailer());
+        model.addAttribute("driverTrailers", trailers);
+        List<Tractor> tractors = tractors();
+        tractors.add(driver.get().getTractor());
+        model.addAttribute("driverTractors", tractors);
         return "drivers/edit";
     }
 
     @PostMapping("/edit")
     public String update(@ModelAttribute("driver") @Valid Driver driver, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return "drivers/edit";
+        }
+
+        if(driver.getTractor().getId()==null){
+            driver.setTractor(null);
+        }
+        if(driver.getTrailer().getId()==null){
+            driver.setTrailer(null);
         }
         driverRepository.save(driver);
         return "redirect:/drivers/list";
@@ -99,12 +120,28 @@ public class DriverController {
 
     @ModelAttribute("tractors")
     public List<Tractor> tractors() {
-        return tractorRepository.findAll();
+        List<Tractor> tr = driverRepository.findAll().stream()
+                .map(driver -> driver.getTractor())
+                .collect(Collectors.toList());
+
+        List<Tractor> tractors = tractorRepository.findAll();
+        List<Tractor> filteredTractors = tractors.stream()
+                .filter(tractor -> !tr.contains(tractor))
+                .collect(Collectors.toList());
+        return filteredTractors;
     }
 
     @ModelAttribute("trailers")
     public List<Trailer> trailers() {
-        return trailerRepository.findAll();
+        List<Trailer> tr = driverRepository.findAll().stream()
+                .map(driver -> driver.getTrailer())
+                .collect(Collectors.toList());
+
+        List<Trailer> trailers = trailerRepository.findAll();
+        List<Trailer> filteredTrailers = trailers.stream()
+                .filter(trailer -> !tr.contains(trailer))
+                .collect(Collectors.toList());
+        return filteredTrailers;
     }
 }
 

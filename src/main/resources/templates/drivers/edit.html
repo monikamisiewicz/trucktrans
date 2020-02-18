@@ -10,9 +10,7 @@
 <h3>Edit driver</h3>
 
 
-<form th:action="@{drivers/edit}"
-      th:object="${driver}"
-      method="post">
+<form th:action="@{/drivers/edit}" th:object="${driver}" method="post">
 
     <input type="hidden" th:field="*{id}">
 
@@ -96,13 +94,16 @@
 
     <div class="form-group col-md-5">
         <label for="tractorSelect">Select Tractor</label>
+
         <select class="form-control" id="tractorSelect" th:field="*{tractor.id}">
             <option th:text="--" th:value="null"></option>
-            <option th:each="tractor : ${tractors}"
+            <option th:each="tractor : ${driverTractors}"
                     th:value="${tractor.id}"
                     th:text="${tractor.getTractorDetails()}">
             </option>
         </select>
+
+
     </div>
 
 
@@ -110,7 +111,7 @@
         <label for="trailerSelect">Select Trailer</label>
         <select class="form-control" id="trailerSelect" th:field="*{trailer.id}">
             <option th:text="--" th:value="null"></option>
-            <option th:each="trailer : ${trailers}"
+            <option th:each="trailer : ${driverTrailers}"
                     th:value="${trailer.id}"
                     th:text="${trailer.getTrailerDetails()}">
             </option>

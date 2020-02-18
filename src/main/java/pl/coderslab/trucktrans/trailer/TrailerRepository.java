@@ -13,8 +13,6 @@ public interface TrailerRepository extends JpaRepository<Trailer, Long> {
 
     List<Trailer> findByMake(String make);
 
-    List<Trailer> findByModel(String model);
-
     Optional<Trailer> findByRegistrationNumber(String registrationNumber);
 
     @Query("select t from Trailer t where t.registrationNumber like ?1%")

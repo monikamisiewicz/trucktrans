@@ -52,6 +52,11 @@ public class Tractor {
     @Column(name = "insurance_expires")
     private LocalDate insuranceExpires;
 
+//    @OneToOne
+//    @JoinColumn(name = "trailer_id",
+//            unique=true)
+//    private Driver driver;
+
     public String getTractorDetails() {
         return make + " " + model + " " + registrationNumber;
     }

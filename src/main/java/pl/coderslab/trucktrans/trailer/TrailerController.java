@@ -76,27 +76,9 @@ public class TrailerController {
     }
 
 
-
-//    @GetMapping("/driver")
-//    public String getByDriver(@RequestParam("driver") long driverId, Model model) {
-//        if (driverId != -1) {
-//            Driver driver = driverRepository.findById(driverId).orElseThrow(IllegalAccessError::new);
-//            model.addAttribute("trailers", trailerRepository.findByDriver(driver));
-//        } else {
-//            model.addAttribute("trailers", Collections.emptyList());
-//        }
-//        return "trailers/list";
-//    }
-
     @GetMapping("/make")
     public String getByMake(@RequestParam("make") String make, Model model) {
         model.addAttribute("trailers", trailerRepository.findByMake(make));
-        return "trailers/list";
-    }
-
-    @GetMapping("/model")
-    public String getByModel(@RequestParam("model") String truckModel, Model model) {
-        model.addAttribute("trailers", trailerRepository.findByModel(truckModel));
         return "trailers/list";
     }
 
@@ -138,6 +120,11 @@ public class TrailerController {
     public List<String> makes() {
         return Arrays.asList("Schmitz",  "Cargobull", "Krone", "Fruehauf", "LAG", "Kögel", "Benalu", "Samro", "Kässbohrer", "Wielton");
     }
+
+    @ModelAttribute("bodies")
+        public List<String> bodies() {
+        return Arrays.asList("steel", "aluminium");
+        }
 
     @ModelAttribute("drivers")
     public List<Driver> drivers() {

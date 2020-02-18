@@ -81,11 +81,6 @@ public class TractorController {
         return "tractors/list";
     }
 
-    @GetMapping("/model")
-    public String getByModel(@RequestParam("model") String truckModel, Model model) {
-        model.addAttribute("tractors", tractorRepository.findByModel(truckModel));
-        return "vehicles/list";
-    }
 
     @GetMapping("/registration")
     public String getByRegistrationNumber(@RequestParam("registration") String registrationNumber, Model model) {

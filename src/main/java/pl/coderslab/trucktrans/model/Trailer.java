@@ -29,8 +29,8 @@ public class Trailer {
     @Column(name = "make")
     private String make;
 
-    @Column(name = "model")
-    private String model;
+    @Column(name = "body")
+    private String body;
 
     @Size(min = 2, max = 14)
     @NotNull(message = "Registration number is required")
@@ -55,6 +55,6 @@ public class Trailer {
     private LocalDate insuranceExpires;
 
     public String getTrailerDetails() {
-        return make + " " + model + " " + registrationNumber;
+        return make + "  " + registrationNumber;
     }
 }
