@@ -15,12 +15,14 @@ Used technologies:
 - MySQL
 
 Features:
-With this simple application you are able to manage your:
+
+With this simple app you are able to manage your:
 - fleet
 - drivers
 - contractors
 - invoices and orders
-by adding, editing removing or viewing the lists and filtering the data.
+
+by adding, editing, removing or viewing the lists and filtering the data.
 
 Screenshots:
 
