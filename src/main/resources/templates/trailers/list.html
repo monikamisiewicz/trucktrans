@@ -8,7 +8,11 @@
 
 
 <button class="btn btn-outline-success"><a href="/trailers" th:href="@{/trailers}"> New trailer </a></button>
-<h3>Trailers</h3>
+
+<div class="container-fluid text-center">
+    <h3>Trailers</h3>
+</div>
+
 
 <table class="table table-bordered">
     <thead class="thead-dark">
@@ -18,6 +22,8 @@
         <th>Body</th>
         <th>Registration number</th>
         <th>VIN</th>
+        <th>Insurance valid to</th>
+        <th>Next technical inspection</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -30,9 +36,11 @@
         <td th:text="${trailer.body}"></td>
         <td th:text="${trailer.registrationNumber}"></td>
         <td th:text="${trailer.vin}"></td>
+        <td th:text="${trailer.insuranceExpires}"></td>
+        <td th:text="${trailer.nextTechnicalInspection}"></td>
         <td>
-            <a th:href="@{edit/{id}(id=${trailer.id})}">Edit</a>
-            <a th:href="@{delete/{id}(id=${trailer.id})}">Delete</a>
+            <a class="fas fa-edit" th:href="@{edit/{id}(id=${trailer.id})}"></a>
+            <a class="fas fa-trash-alt" th:href="@{delete/{id}(id=${trailer.id})}"></a>
         </td>
     </tr>
     </tbody>

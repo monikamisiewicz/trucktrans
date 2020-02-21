@@ -53,101 +53,8 @@
                         <input class="form-control" type="number" min="0" step="1" th:field="*{items[__${itemStat.index}__].vatRateInPercent}" id="vatRateInPercent"/>
                     </label>
                 </td>
-
-
-
-
-
-                <!--        <table class="table table-hover small-text" id="tb">-->
-                <!--            <tr class="tr-header">-->
-                <!--                <th>Service/Goods description</th>-->
-                <!--                <th>Unit</th>-->
-                <!--                <th>Quantity</th>-->
-                <!--                <th>Unit price</th>-->
-                <!--                <th>Vat rate %</th>-->
-                <!--                <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore" title="Add new item"><i class="fas fa-plus fa-1x"></i></a></th>-->
-                <!--            <tr>-->
-                <!--                <td>-->
-                <!--                    <label for="serviceDescription"></label>-->
-                <!--                    <textarea class="form-control" th:field="*{serviceDescription}" id="serviceDescription"></textarea>-->
-                <!--                    <span th:if="${#fields.hasErrors('serviceDescription')}" th:errors="*{serviceDescription}"></span>-->
-                <!--                </td>-->
-
-                <!--                <td>-->
-                <!--                    <label for="unit"></label>-->
-                <!--                    <input class="form-control" type="text" th:field="*{unit}" id="unit">-->
-                <!--                    <span th:if="${#fields.hasErrors('unit')}" th:errors="*{unit}"></span>-->
-                <!--                </td>-->
-
-                <!--                <td>-->
-                <!--                    <label for="quantity"></label>-->
-                <!--                    <input class="form-control" type="number" min="0" step="0.01" th:field="*{quantity}" id="quantity">-->
-                <!--                    <span th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></span>-->
-                <!--                </td>-->
-
-                <!--                <td>-->
-                <!--                    <label for="unitPrice"></label>-->
-                <!--                    <input class="form-control" type="number" min="0" step="0.01" th:field="*{unitPrice}"-->
-                <!--                           id="unitPrice">-->
-                <!--                    <span th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}"></span>-->
-                <!--                </td>-->
-
-                <!--                <td>-->
-                <!--                    <label for="vatRateInPercent"></label>-->
-                <!--                    <input class="form-control" type="number" min="0" step="1" th:field="*{vatRateInPercent}"-->
-                <!--                           id="vatRateInPercent">-->
-                <!--                    <span th:if="${#fields.hasErrors('vatRateInPercent')}" th:errors="*{vatRateInPercent}"></span>-->
-                <!--                </td>-->
-
-                <!--                <td><a href='javascript:void(0);' class='remove'><i class="fas fa-minus fa-1x"></i></a>-->
-                <!--                </td>-->
-                <!--            </tr>-->
-                <!--        </table>-->
-
-
-
-
-
-                <!--        <div class="form-row">-->
-                <!--            <div class="form-group col-md-5">-->
-                <!--                <label for="serviceDescription">Service/goods description</label>-->
-                <!--                <textarea class="form-control" th:field="*{serviceDescription}" id="serviceDescription"></textarea>-->
-                <!--            </div>-->
-                <!--            <span th:if="${#fields.hasErrors('serviceDescription')}" th:errors="*{serviceDescription}"></span>-->
-                <!--        </div>-->
-
-
-                <!--        <div class="form-row">-->
-                <!--            <div class="form-group col-md-5">-->
-                <!--                <label for="unit">Unit:</label>-->
-                <!--                <input class="form-control" type="text" th:field="*{unit}" id="unit">-->
-                <!--            </div>-->
-                <!--            <span th:if="${#fields.hasErrors('unit')}" th:errors="*{unit}"></span>-->
-                <!--            <div class="form-group col-md-5">-->
-                <!--                <label for="quantity">Quantity:</label>-->
-                <!--                <input class="form-control" type="number" min="0" step="0.01" th:field="*{quantity}" id="quantity">-->
-                <!--            </div>-->
-                <!--            <span th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></span>-->
-                <!--        </div>-->
-
-                <!--        <div class="form-row">-->
-                <!--            <div class="form-group col-md-5">-->
-                <!--                <label for="unitPrice">Unit price:</label>-->
-                <!--                <input class="form-control" type="number" min="0" step="0.01" th:field="*{unitPrice}" id="unitPrice">-->
-                <!--            </div>-->
-                <!--            <span th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}"></span>-->
-                <!--            <div class="form-group col-md-5">-->
-                <!--                <label for="vatRateInPercent">VAT rate %:</label>-->
-                <!--                <input class="form-control" type="number" min="0" step="1" th:field="*{vatRateInPercent}"-->
-                <!--                       id="vatRateInPercent">-->
-                <!--            </div>-->
-                <!--            <span th:if="${#fields.hasErrors('vatRateInPercent')}" th:errors="*{vatRateInPercent}"></span>-->
-                <!--        </div>-->
-
-
             </tr>
             </tbody>
-
         </table>
 
 
@@ -170,14 +77,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-<!--<script src="../../static/js/app.js"></script>-->
+<script th:src="@{/js/app.js}"></script>
 
-<script>
-    $('.input-group.date').datepicker({
-        autoclose: true,
-        todayHighlight: true
-    });
-</script>
 
 <div th:insert="fragment :: footer"></div>
 </body>

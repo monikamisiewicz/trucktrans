@@ -6,13 +6,49 @@
 <div th:insert="fragment :: header"></div>
 <div th:insert="fragment :: menu"></div>
 
+<button class="btn btn-outline-success"><a href="/contractors" th:href="@{/contractors}"> New contractor </a></button>
+
+
+<div class="card bg-dark text-white">
+    <div class="card-header">
+        FILTERS
+    </div>
+    <div class="card-body">
+        <section class="filters">
+            <button class="filter-button btn btn-outline-info">Search by name</button>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <form class="form-inline my-2 my-lg-0" th:action="@{/contractors/name-start}" method="get">
+                        <label></label>
+                        <input class="form-control mr-sm-2" type="search" name="name" placeholder="contractor name"
+                               aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            <button class="filter-button btn btn-outline-info">Search by nip</button>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <form class="form-inline my-2 my-lg-0" th:action="@{/contractors/nip}" method="get">
+                        <label></label>
+                        <input class="form-control mr-sm-2" type="search" name="nip" placeholder="nip"
+                               aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            <button class="btn btn-outline-info"><a href="/contractors" th:href="@{/contractors/list}"> Show all </a></button>
+        </section>
+    </div>
+</div>
 
 <div th:switch="${contractors}">
     <h2 th:case="null">No contractors yet!</h2>
     <div th:case="*">
-        <h2>Contractor list</h2>
-        <button class="btn btn-outline-success"><a href="/contractors" th:href="@{/contractors}"> New contractor </a>
-        </button>
+        <div class="container-fluid text-center">
+            <h2>Contractor list</h2>
+        </div>
+
         <table class="table table-bordered">
             <thead class="thead-dark">
             <tr>
@@ -34,8 +70,8 @@
                 <td th:text="${contractor.postCode}"></td>
                 <td th:text="${contractor.place}"></td>
                 <td>
-                    <a th:href="@{edit/{id}(id=${contractor.id})}">Edit</a>
-                    <a th:href="@{delete/{id}(id=${contractor.id})}">Delete</a>
+                    <a class="fas fa-edit" th:href="@{edit/{id}(id=${contractor.id})}"></a>
+                    <a class="fas fa-trash-alt" th:href="@{delete/{id}(id=${contractor.id})}"></a>
                 </td>
             </tr>
             </tbody>
@@ -54,6 +90,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+<script th:src="@{/js/app.js}"></script>
 
 <div th:insert="fragment :: footer"></div>
 </body>

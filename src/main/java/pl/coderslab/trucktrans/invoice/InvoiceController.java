@@ -13,7 +13,13 @@ import pl.coderslab.trucktrans.item.ItemRepository;
 import pl.coderslab.trucktrans.model.*;
 
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -28,6 +34,7 @@ public class InvoiceController {
     private final DriverRepository driverRepository;
     private final CompanyRepository companyRepository;
     private final ContractorRepository contractorRepository;
+
 
     @GetMapping
     public String add(Model model) {
@@ -73,8 +80,6 @@ public class InvoiceController {
     }
 
 
-
-
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable long id, Model model) {
         Optional<Invoice> invoice = invoiceRepository.findById(id);
@@ -102,14 +107,13 @@ public class InvoiceController {
     @PostMapping("/edit-item")
     public String updateItems(@ModelAttribute Invoice invoice, Model model) {
         List<Item> items = invoice.getItems();
-        for (Item item: items) {
-           Item itemFromDB = itemRepository.getOne(item.getId());
-           itemFromDB.setServiceDescription(item.getServiceDescription());
-           itemFromDB.setQuantity(item.getQuantity());
+        for (Item item : items) {
+            Item itemFromDB = itemRepository.getOne(item.getId());
+            itemFromDB.setServiceDescription(item.getServiceDescription());
+            itemFromDB.setQuantity(item.getQuantity());
 
 
-
-           itemRepository.save(itemFromDB);
+            itemRepository.save(itemFromDB);
 
         }
 
@@ -165,9 +169,15 @@ public class InvoiceController {
     }
 
 
-    @GetMapping("/number_contains")
+    @GetMapping("/number-contains")
     public String getByNumberContainig(@RequestParam("number") String number, Model model) {
         model.addAttribute("invoices", invoiceRepository.findByInvoiceNumberContaining(number));
+        return "invoices/list";
+    }
+
+    @GetMapping("/number-start")
+    public String getByNumberStart(@RequestParam("number") String number, Model model) {
+        model.addAttribute("invoices", invoiceRepository.findByNumberStartsWith(number));
         return "invoices/list";
     }
 
@@ -185,17 +195,18 @@ public class InvoiceController {
     }
 
     @GetMapping("/date-range")
-    public String getByDateRange(@RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
-                                 @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end, Model model) {
+    public String getByDateRange(@RequestParam("start") @DateTimeFormat(pattern = "dd/MM/yyyy")  LocalDate start,
+                                 @RequestParam("end") @DateTimeFormat(pattern = "dd/MM/yyyy")  LocalDate end, Model model) {
         model.addAttribute("invoices", invoiceRepository.findInvoiceByDateBetween(start, end));
         return "invoices/list";
     }
 
-    @GetMapping("/method")
-    public String getByPaymentMethod(@RequestParam("paymentMethod") String method, Model model) {
-        model.addAttribute("invoices", invoiceRepository.findByPaymentMethod(method));
+    @GetMapping("/status")
+    public String getByPaymentMethod(@RequestParam("status") Boolean status, Model model) {
+        model.addAttribute("invoices", invoiceRepository.findByIsPaid(status));
         return "invoices/list";
     }
+
 
     @ModelAttribute("paymentMethods")
     public List<String> payments() {

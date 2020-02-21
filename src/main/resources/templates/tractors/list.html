@@ -7,8 +7,12 @@
 <div th:insert="fragment :: menu"></div>
 
 
-<h3>Tractors</h3>
+
 <button class="btn btn-outline-success"><a href="/tractors" th:href="@{/tractors}"> New tractor </a></button>
+
+<div class="container-fluid text-center">
+    <h3>Tractors</h3>
+</div>
 
 <table class="table table-bordered">
     <thead class="thead-dark">
@@ -18,6 +22,8 @@
         <th>Model</th>
         <th>Registration number</th>
         <th>VIN</th>
+        <th>Insurance valid to</th>
+        <th>Next technical inspection</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -29,9 +35,11 @@
         <td th:text="${tractor.model}"></td>
         <td th:text="${tractor.registrationNumber}"></td>
         <td th:text="${tractor.vin}"></td>
+        <td th:text="${tractor.insuranceExpires}"></td>
+        <td th:text="${tractor.nextTechnicalInspection}"></td>
         <td>
-            <a th:href="@{edit/{id}(id=${tractor.id})}">Edit</a>
-            <a th:href="@{delete/{id}(id=${tractor.id})}">Delete</a></td>
+            <a class="fas fa-edit" th:href="@{edit/{id}(id=${tractor.id})}"></a>
+            <a class="fas fa-trash-alt" th:href="@{delete/{id}(id=${tractor.id})}"></a></td>
     </tr>
 
     </tbody>

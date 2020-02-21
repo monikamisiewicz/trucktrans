@@ -7,7 +7,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.pl.PESEL;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.trucktrans.converters.LocalDateConverter;
-import pl.coderslab.trucktrans.validator.MinAge;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.Future;

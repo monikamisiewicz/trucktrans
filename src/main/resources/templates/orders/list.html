@@ -9,83 +9,74 @@
 
 <button class="btn btn-outline-success"><a href="/orders" th:href="@{/orders}"> New order </a></button>
 
-
-<div class="form-row">
-    <div class="form-group col-md-5">
-        <form class="form-inline my-2 my-lg-0" th:action="@{/orders/order-number}" method="get">
-            <!--            <label></label>-->
-            <input class="form-control mr-sm-2" type="search" name="orderNumber" placeholder="Search by number"
-                   aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+<div class="card bg-dark text-white">
+    <div class="card-header">
+        FILTERS
     </div>
-</div>
+    <div class="card-body">
+        <section class="filters">
 
-<div class="form-row">
-    <div class="form-group col-md-5">
-        <form class="form-inline my-2 my-lg-0" th:action="@{/orders/contractor}" method="get">
-<!--                            <label>Search by Contractor</label>-->
-            <select class="form-control mr-sm-2" type="search" name="contractor" aria-label="Search">
-                <option th:text="--" th:value="null"></option>
-                <option selected>Search by contractor</option>
-                <option th:each="contractor : ${contractors}"
-                        th:text="${contractor.name}"
-                        th:value="${contractor.id}">
-                </option>
-            </select>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
-</div>
-
-
-<div class="form-row">
-    <div class="form-group col-md-5">
-        <form class="form-inline my-2 my-lg-0" th:action="@{/orders/date-range}" method="get">
-            <div class="input-group date" data-date-format="dd/mm/yyyy">
-                <label for="dateStart"></label>
-                <input type="text" class="form-control" name="start" autocomplete="off" id="dateStart"
-                       placeholder="start date"/>
-                <div class="input-group-append">
-                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                </div>
-
-            </div>
-
-
-            <div class="input-group date" data-date-format="dd/mm/yyyy">
-                <label for="dateEnd"></label>
-                <input type="text" class="form-control" name="end" autocomplete="off" id="dateEnd"
-                       placeholder="end date"/>
-                <div class="input-group-append">
-                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+            <button class="filter-button btn btn-outline-info">Search by number</button>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <form class="form-inline my-2 my-lg-0" th:action="@{/orders/order-number}" method="get">
+                        <label></label>
+                        <input class="form-control mr-sm-2" type="search" name="orderNumber" placeholder="order number"
+                               aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
                 </div>
             </div>
 
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+            <button class="filter-button btn btn-outline-info">Search by contractor</button>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <form class="form-inline my-2 my-lg-0" th:action="@{/orders/contractor}" method="get">
+                        <select class="form-control mr-sm-2" type="search" name="contractor" aria-label="Search">
+                            <option th:text="--" th:value="null"></option>
+                            <option selected>Choose contractor</option>
+                            <option th:each="contractor : ${contractors}"
+                                    th:text="${contractor.name}"
+                                    th:value="${contractor.id}">
+                            </option>
+                        </select>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+
+            <button class="filter-button btn btn-outline-info">Search by date range</button>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <form th:action="@{/orders/date-range}" method="get">
+                        <div class="input-group date" data-date-format="dd/mm/yyyy">
+                            <label for="dateStart"></label>
+                            <input type="text" class="form-control" name="start" autocomplete="off" id="dateStart"
+                                   placeholder="start date"/>
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="input-group date" data-date-format="dd/mm/yyyy">
+                            <label for="dateEnd"></label>
+                            <input type="text" class="form-control" name="end" autocomplete="off" id="dateEnd"
+                                   placeholder="end date"/>
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            <button class="btn btn-outline-info"><a href="/orders" th:href="@{/orders/list}"> Show all </a></button>
+        </section>
     </div>
 </div>
-
-
-
-<!--<div>-->
-<!--    <form th:action="@{/orders/date}" method="get">-->
-<!--        <div class="form-row">-->
-<!--            <div class="form-group col-md-5">-->
-<!--                <label for="dateSearch"></label>-->
-<!--                <div class="input-group date" data-date-format="dd/mm/yyyy">-->
-<!--                    <input type="text" class="form-control" name="date" id="dateSearch" autocomplete="off"/>-->
-<!--                    <div class="input-group-append">-->
-<!--                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-<!--        </div>-->
-<!--    </form>-->
-<!--</div>-->
-
 
 
 <div class="container-fluid text-center">
@@ -110,7 +101,7 @@
     </tr>
     </thead>
     <tr th:if="${orders.isEmpty()}">
-        <td colspan="12"> No Orders Available </td>
+        <td colspan="12"> No Orders Available</td>
     </tr>
     <tbody>
     <tr th:each="order, loopCount : ${orders}">
@@ -126,8 +117,8 @@
         <td th:text="${order.value}"></td>
         <td th:text="${order.drivers}"></td>
         <td>
-            <a th:href="@{edit/{id}(id=${order.id})}">Edit</a>
-            <a th:href="@{delete/{id}(id=${order.id})}">Delete</a>
+            <a class="fas fa-edit" th:href="@{edit/{id}(id=${order.id})}"></a>
+            <a class="fas fa-trash-alt" th:href="@{delete/{id}(id=${order.id})}"></a>
         </td>
     </tr>
     </tbody>
@@ -145,15 +136,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-<!--<script src="../../static/js/app.js"></script>-->
-
-
-<script>
-    $('.input-group.date').datepicker({
-        autoclose: true,
-        todayHighlight: true
-    });
-</script>
+<script th:src="@{/js/app.js}"></script>
 
 
 <div th:insert="fragment :: footer"></div>

@@ -98,6 +98,11 @@ public class DriverController {
         return "drivers/list";
     }
 
+    @GetMapping("/name-contains")
+    public String getByNameContaining(@RequestParam("lastName") String lastName, Model model) {
+        model.addAttribute("drivers", driverRepository.findByLastNameContaining(lastName));
+        return "drivers/list";
+    }
 
     @GetMapping("/first-name")
     public String getByFirstName(@RequestParam("firstName") String firstName, Model model) {

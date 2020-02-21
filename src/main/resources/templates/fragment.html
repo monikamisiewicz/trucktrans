@@ -5,13 +5,13 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
+    <script src="https://kit.fontawesome.com/503fc7ffdd.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
-    <link th:rel="stylesheet" type="text/css" th:href="@{css/bootstrap-datepicker.standalone.css}"/>
-    <script src="https://kit.fontawesome.com/503fc7ffdd.js" crossorigin="anonymous"></script>
+    <link th:rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-datepicker.standalone.css}"/>
+
 
     <title>Truck Trans</title>
 </head>
@@ -61,14 +61,14 @@
     </nav>
 
 
-    <!--                    <img alt="Logo" th:src="@{/images/logo1.png}"/>-->
-
 
 </div>
 
 
-<footer th:fragment="footer">
-    <p>©2020. Truck Trans </p>
+<footer class="footer" th:fragment="footer">
+    <div class="container">
+        <p class="text-muted">©2020. Truck Trans</p>
+    </div>
 </footer>
 
 </body>

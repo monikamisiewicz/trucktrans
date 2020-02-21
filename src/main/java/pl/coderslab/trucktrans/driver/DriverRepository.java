@@ -14,5 +14,8 @@ public interface DriverRepository extends JpaRepository<Driver, Long> {
 
     List<Driver> findByLastName(String lastName);
 
+    @Query("select d from Driver d where  d.lastName like %?1% ")
+    List<Driver> findByLastNameContaining(String name);
+
     Optional<Driver> findByPesel(String pesel);
 }

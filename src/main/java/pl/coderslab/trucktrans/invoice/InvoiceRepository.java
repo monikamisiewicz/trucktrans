@@ -15,7 +15,7 @@ public interface InvoiceRepository extends JpaRepository<Invoice,Long> {
 
     List<Invoice> findByContractor(Contractor contractor);
 
-    List<Invoice> findByInvoiceNumberContaining(String number);
+    List<Invoice> findByIsPaid(Boolean status);
 
     Optional<Invoice> findByInvoiceNumber(String number);
 
@@ -24,7 +24,13 @@ public interface InvoiceRepository extends JpaRepository<Invoice,Long> {
     @Query("SELECT i FROM Invoice i WHERE i.invoiceDate BETWEEN ?1 AND ?2")
     Set<Invoice> findInvoiceByDateBetween(LocalDate start, LocalDate end);
 
-    List<Invoice> findByPaymentMethod(String method);
+    @Query("select i from Invoice i where i.invoiceNumber like ?1%")
+    List<Invoice> findByNumberStartsWith(String number);
+
+    @Query("select i from Invoice i where i.invoiceNumber like %?1%")
+    List<Invoice> findByInvoiceNumberContaining(String number);
+
+
 
 
 }

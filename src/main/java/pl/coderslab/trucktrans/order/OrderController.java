@@ -152,13 +152,6 @@ public class OrderController {
         return "orders/list";
     }
 
-//    @GetMapping("/date-range")
-//    public String getByDateRange(@RequestParam("start")LocalDate start, @RequestParam("end") LocalDate end, Model model) {
-//        model.addAttribute("orders", orderRepository.findOrderByDateBetween(start, end));
-//        return "orders/list";
-//    }
-
-
     @GetMapping("/date-range")
     public String getByDateRange(@RequestParam("start") @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate start,
                                  @RequestParam("end") @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate end, Model model) {

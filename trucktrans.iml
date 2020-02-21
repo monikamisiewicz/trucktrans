@@ -26,6 +26,12 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="bootstrap-datepicker" level="application" />
+    <orderEntry type="library" name="jquery-1.12.4" level="application" />
+    <orderEntry type="library" name="html5shiv" level="application" />
+    <orderEntry type="library" name="respond" level="application" />
+    <orderEntry type="library" name="jquery-3.4.1.slim" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="503fc7ffdd" level="application" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:2.2.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-aop:2.2.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.2.3.RELEASE" level="project" />
@@ -126,14 +132,14 @@
     <orderEntry type="library" name="Maven: org.apiguardian:apiguardian-api:1.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.opentest4j:opentest4j:1.2.0" level="project" />
     <orderEntry type="library" name="Maven: org.junit.platform:junit-platform-commons:1.5.2" level="project" />
-    <orderEntry type="library" name="Maven: org.webjars:bootstrap:unknown" level="project" />
-    <orderEntry type="library" name="Maven: org.webjars:webjars-locator:unknown" level="project" />
-    <orderEntry type="library" name="Maven: org.webjars:font-awesome:unknown" level="project" />
-    <orderEntry type="library" name="jquery-1.12.4" level="application" />
-    <orderEntry type="library" name="html5shiv" level="application" />
-    <orderEntry type="library" name="respond" level="application" />
-    <orderEntry type="library" name="jquery-3.4.1.slim" level="application" />
-    <orderEntry type="library" name="jquery" level="application" />
-    <orderEntry type="library" name="503fc7ffdd" level="application" />
+    <orderEntry type="library" name="Maven: org.apache.poi:poi:4.1.2" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.13" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-collections4:4.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-math3:3.6.1" level="project" />
+    <orderEntry type="library" name="Maven: com.zaxxer:SparseBitSet:1.2" level="project" />
+    <orderEntry type="library" name="Maven: com.itextpdf:itextpdf:5.5.13.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.pdfbox:pdfbox:2.0.18" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.pdfbox:fontbox:2.0.18" level="project" />
+    <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.2" level="project" />
   </component>
 </module>

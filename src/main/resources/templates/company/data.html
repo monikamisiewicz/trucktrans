@@ -6,34 +6,72 @@
 <div th:insert="fragment :: header"></div>
 <div th:insert="fragment :: menu"></div>
 
-<div th:switch="${company}">
-    <h2 th:case="null">No company data yet!</h2>
-    <div th:case="*">
+<!--<div th:switch="${company}">-->
+<!--    <h2 th:case="null">No company data yet!</h2>-->
+<!--    <div th:case="*">-->
 
-        <div class="container">
-            <h2>Company data</h2>
-            <p class="border" th:each="companyData : ${company}">
-                <strong th:text="${companyData.name}"></strong><br>
-                NIP: <span th:text="${companyData.nip}"></span><br>
-                <span th:text="${companyData.street}"></span> <span th:text="${companyData.streetNumber}"></span><br>
-                <span th:text="${companyData.postCode}"></span> <span th:text="${companyData.place}"></span><br>
-                Bank: <span th:text="${companyData.bank}"></span><br>
-                Account number: <span th:text="${companyData.iban}"></span><br>
+<!--        <div class="container">-->
+<!--            <h2>Company data</h2>-->
+<!--            <p class="border" th:each="companyData : ${company}">-->
+<!--                <strong th:text="${companyData.name}"></strong><br>-->
+<!--                NIP: <span th:text="${companyData.nip}"></span><br>-->
+<!--                <span th:text="${companyData.street}"></span> <span th:text="${companyData.streetNumber}"></span><br>-->
+<!--                <span th:text="${companyData.postCode}"></span> <span th:text="${companyData.place}"></span><br>-->
+<!--                Bank: <span th:text="${companyData.bank}"></span><br>-->
+<!--                Account number: <span th:text="${companyData.iban}"></span><br>-->
 
-                <button class="btn btn-outline-primary"><a th:href="@{edit/{id}(id=${companyData.id})}">Edit</a>
-                </button>
-                <button class="btn btn-outline-danger"><a th:href="@{delete/{id}(id=${companyData.id})}">Delete</a>
-                </button>
-            </p>
+<!--                <button class="btn btn-outline-primary"><a th:href="@{edit/{id}(id=${companyData.id})}">Edit</a>-->
+<!--                </button>-->
+<!--                <button class="btn btn-outline-danger"><a th:href="@{delete/{id}(id=${companyData.id})}">Delete</a>-->
+<!--                </button>-->
+<!--            </p>-->
+<!--        </div>-->
+
+<!--        <div class="container">-->
+<!--            <button class="btn btn-outline-success"><a href="/company" th:href="@{/company}"> New company data </a>-->
+<!--            </button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<div class="card">
+    <img th:src="@{/images/fleet.jpg}" class="card-img" alt="port view">
+    <div class="card-img-overlay">
+
+        <div class="col-md-7">
+            <div class="card-body bg-dark text-white">
+                <div th:switch="${company}">
+                    <h2 th:case="null">No company data yet!</h2>
+                    <div th:case="*">
+                        <h5 class="card-title">Company data</h5>
+                        <p class="border" th:each="companyData : ${company}">
+                            <strong th:text="${companyData.name}"></strong><br>
+                            NIP: <span th:text="${companyData.nip}"></span><br>
+                            <span th:text="${companyData.street}"></span> <span
+                                th:text="${companyData.streetNumber}"></span><br>
+                            <span th:text="${companyData.postCode}"></span> <span th:text="${companyData.place}"></span><br>
+                            Bank: <span th:text="${companyData.bank}"></span><br>
+                            Account number: <span th:text="${companyData.iban}"></span><br>
+
+                            <button class="btn btn-outline-primary"><a
+                                    th:href="@{edit/{id}(id=${companyData.id})}">Edit</a>
+                            </button>
+                            <button class="btn btn-outline-danger"><a th:href="@{delete/{id}(id=${companyData.id})}">Delete</a>
+                            </button>
+                        </p>
+                    </div>
+                    <div class="container">
+                        <button class="btn btn-outline-success"><a href="/company" th:href="@{/company}"> New company data </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="container">
-            <button class="btn btn-outline-success"><a href="/company" th:href="@{/company}"> New company data </a>
-            </button>
-        </div>
     </div>
 </div>
-
+</div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
