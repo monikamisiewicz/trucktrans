@@ -9,13 +9,11 @@
 
 <button class="btn btn-outline-success"><a href="/invoices" th:href="@{/invoices}"> New invoice </a></button>
 <button>
-    <a th:href="@{/reports/createPdf}"><img th:src="@{/images/pdf-icon.png}" alt="pdf icon"></a>
+    <a th:href="@{/reports/invoicePdf}"><img th:src="@{/images/pdf-icon.png}" alt="pdf icon"></a>
 </button>
 <button>
-    <a th:href="@{'/reports/createExcel'}"><img th:src="@{/images/excel-xls-icon.png}" alt="excel icon"></a>
+    <a th:href="@{/reports/invoiceExcel}"><img th:src="@{/images/excel-xls-icon.png}" alt="excel icon"></a>
 </button>
-
-
 
 <div class="card bg-dark text-white">
     <div class="card-header">

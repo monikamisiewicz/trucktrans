@@ -56,7 +56,7 @@ public class InvoiceController {
         Optional<Invoice> invoiceOptional = invoiceRepository.findById(id);
         Invoice invoice = invoiceOptional.get();
         List<Item> items = new ArrayList<>();
-        for (int i = 0; i <= 2; i++) {
+        for (int i = 0; i <= 10; i++) {
             items.add(new Item());
         }
         invoice.setItems(items);
