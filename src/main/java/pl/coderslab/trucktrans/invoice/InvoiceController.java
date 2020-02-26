@@ -110,11 +110,11 @@ public class InvoiceController {
         for (Item item : items) {
             Item itemFromDB = itemRepository.getOne(item.getId());
             itemFromDB.setServiceDescription(item.getServiceDescription());
+            itemFromDB.setUnit(item.getUnit());
             itemFromDB.setQuantity(item.getQuantity());
-
-
+            itemFromDB.setUnitPrice(item.getUnitPrice());
+            itemFromDB.setVatRateInPercent(item.getVatRateInPercent());
             itemRepository.save(itemFromDB);
-
         }
 
         return "redirect:/invoices/list";
@@ -195,8 +195,8 @@ public class InvoiceController {
     }
 
     @GetMapping("/date-range")
-    public String getByDateRange(@RequestParam("start") @DateTimeFormat(pattern = "dd/MM/yyyy")  LocalDate start,
-                                 @RequestParam("end") @DateTimeFormat(pattern = "dd/MM/yyyy")  LocalDate end, Model model) {
+    public String getByDateRange(@RequestParam("start") @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate start,
+                                 @RequestParam("end") @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate end, Model model) {
         model.addAttribute("invoices", invoiceRepository.findInvoiceByDateBetween(start, end));
         return "invoices/list";
     }

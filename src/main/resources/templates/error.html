@@ -4,12 +4,10 @@
 <head th:fragment="head">
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css">
-<!--    <link rel="stylesheet" type="text/css" media="all"-->
-<!--          href="../static/css/style.css" th:href="@{/css/style.css}" />-->
+    <script src="https://kit.fontawesome.com/503fc7ffdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
-
     <title>Error</title>
 </head>
 <body>
@@ -20,40 +18,46 @@
 <table>
     <tr>
         <td>Date</td>
-        <td th:text="${timestamp}"/>
+        <td th:text="${timestamp}"></td>
     </tr>
     <tr>
         <td>Path</td>
-        <td th:text="${path}"/>
+        <td th:text="${path}"></td>
     </tr>
     <tr>
         <td>Error</td>
-        <td th:text="${error}"/>
+        <td th:text="${error}"></td>
     </tr>
     <tr>
         <td>Status</td>
-        <td th:text="${status}"/>
+        <td th:text="${status}"></td>
     </tr>
     <tr>
         <td>Message</td>
-        <td th:text="${message}"/>
+        <td th:text="${message}"></td>
     </tr>
     <tr>
         <td>Exception</td>
-        <td th:text="${exception}"/>
+        <td th:text="${exception}"></td>
     </tr>
     <tr>
         <td>Trace</td>
         <td>
-            <pre th:text="${trace}"/>
+            <pre th:text="${trace}">
         </td>
     </tr>
 </table>
 
-<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>

@@ -6,7 +6,9 @@
 <div th:insert="fragment :: header"></div>
 <div th:insert="fragment :: menu"></div>
 
-
+<button>
+    <a th:href="@{/reports/invoicePdf/{id}(id=${invoice.id})}"><img th:src="@{/images/pdf-icon.png}" alt="pdf icon"></a>
+</button>
 <h1 class="text-center">Invoice no. <span th:text="${invoice.invoiceNumber}"></span></h1>
 
 <div class="form-row">
@@ -21,7 +23,7 @@
 
     <div class="border form-group col-md-5">
         Place of issue: <span th:text="${invoice.place}"></span><br>
-        Date of invoice: <span th:text="${invoice.paymentDate}"></span><br>
+        Date of invoice: <span th:text="${invoice.invoiceDate}"></span><br>
         Date of service: <span th:text="${invoice.serviceDate}"></span><br>
     </div>
 </div>

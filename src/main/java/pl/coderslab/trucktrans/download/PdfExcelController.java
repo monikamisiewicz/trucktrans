@@ -5,15 +5,23 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import pl.coderslab.trucktrans.contractor.ContractorService;
 import pl.coderslab.trucktrans.invoice.InvoiceService;
+import pl.coderslab.trucktrans.model.Contractor;
 import pl.coderslab.trucktrans.model.Invoice;
+import pl.coderslab.trucktrans.model.Item;
+import pl.coderslab.trucktrans.model.Order;
+import pl.coderslab.trucktrans.order.OrderService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/reports")
@@ -24,18 +32,31 @@ public class PdfExcelController {
 
     private final ServletContext servletContext;
     private final InvoiceService invoiceService;
+    private final ContractorService contractorService;
+    private final OrderService orderService;
 
-    @GetMapping("/invoicePdf")
+    @GetMapping("/invoicesPdf")
     public void createPdf(HttpServletRequest request, HttpServletResponse response) {
         List<Invoice> invoices = invoiceService.getAllInvoices();
         boolean isFlag = invoiceService.createPdf(invoices, servletContext, request, response);
+        if (isFlag) {
+            String fullPath = DIRECTORY + "invoices.pdf";
+            filedownload(fullPath, response, "invoices.pdf" );
+        }
+    }
+
+    @GetMapping("/invoicePdf/{id}")
+    public void createPdfInvoiceDetails(@PathVariable(name = "id") long invoiceId, HttpServletRequest request, HttpServletResponse response) {
+       Invoice invoice = invoiceService.getById(invoiceId);
+       List<Item> items = invoiceService.getAllItems();
+        boolean isFlag = invoiceService.createPdfInvoiceDetails(invoice, items, servletContext, request, response);
         if (isFlag) {
             String fullPath = DIRECTORY + "invoice.pdf";
             filedownload(fullPath, response, "invoice.pdf" );
         }
     }
 
-    @GetMapping("/invoiceExcel")
+    @GetMapping("/invoicesExcel")
     public void createExcel(HttpServletRequest request, HttpServletResponse response) {
         List<Invoice> invoices = invoiceService.getAllInvoices();
         boolean isFlag = invoiceService.createExcel(invoices, servletContext, request, response);
@@ -44,6 +65,27 @@ public class PdfExcelController {
             filedownload(fullPath, response, "invoice.xls");
         }
     }
+
+    @GetMapping("/contractorsPdf")
+    public void createPdfContractors(HttpServletRequest request, HttpServletResponse response) {
+        List<Contractor> contractors = contractorService.getAllContractors();
+        boolean isFlag = contractorService.createPdf(contractors, servletContext, request, response);
+        if (isFlag) {
+            String fullPath = DIRECTORY + "contractors.pdf";
+            filedownload(fullPath, response, "contractors.pdf" );
+        }
+    }
+
+    @GetMapping("/ordersPdf")
+    public void createPdfOrders(HttpServletRequest request, HttpServletResponse response) {
+        List<Order> orders = orderService.getAllOrders();
+        boolean isFlag = orderService.createPdf(orders, servletContext, request, response);
+        if (isFlag) {
+            String fullPath = DIRECTORY + "orders.pdf";
+            filedownload(fullPath, response, "orders.pdf" );
+        }
+    }
+
 
 
     //download logic

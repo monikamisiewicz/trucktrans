@@ -32,7 +32,9 @@ INSERT INTO tractors (`id`,make, model, registration_number, vin, insurance_expi
 INSERT INTO trailers (`id`,make, body, registration_number, vin, insurance_expires, next_technical_inspection ) VALUES
 (1, 'WIELTON ', 'steel', 'DLU8865', '98086754212345678', '2021-03-19', '2022-08-13'),
 (2, 'SCHMITZ', 'aluminium', 'DLB 44UG', 'JTDKB20U983336905', '2034-06-13', '2020-12-20'),
-(3, 'SCHMITZ', 'steel', 'FZ PO678', '1HGFA16807L092733', '2020-02-22', '2020-02-29')
+(3, 'SCHMITZ', 'steel', 'FZ PO678', '1HGFA16807L092733', '2020-02-22', '2020-02-29'),
+(4, 'Wielton', 'aluminium', 'DLB F633', '1GNKRGKD8DJ145866', '2020-07-25', '2021-05-10' ),
+(5, 'Wielton', 'aluminium', 'DLB 437P', 'JNKBY31AXYM379859', '2020-07-18', '2023-08-18')
 ;
 
 INSERT INTO `drivers` VALUES
@@ -48,4 +50,14 @@ INSERT INTO `invoices` (`id`, `invoice_number`, `invoice_date`, `service_date`, 
 (3, '3/2019', '2019-07-16', '2019-07-16', 'Leśna', 45, 'cash ', ' ', 'false ', '2', '1'),
 (4, '4/2019', '2019-07-16', '2019-07-16', 'Leśna', 30, 'cash', ' ', 'false',  '3', '1'),
 (5, '5/2019', '2019-07-19', '2019-07-19', 'Leśna', 60, 'cash', ' ', 'true',  '4', '1')
+;
+
+INSERT INTO 'items' (id, quantity, service_description, unit, unit_price, vat_rate, invoice_id) VALUES
+(9,123,  'Sprzedaż piasku', 'tona', 24.50,23,1),
+(23,4, 'Transport żwiru', 'kurs', 120, 23, 2),
+(25, 3, 'Transport żwiru', 'kurs', 125, 23, 2),
+(27, 5, 'Transport żwiru', 'kurs', 120, 23, 2),
+(28, 6, 'Transport kruszywa Sulików-Myślibórz', 'kurs', 1239.39, 23, 3),
+(29, 2,'Transport kruszywa granitowego', 'kurs', 676, 23, 4),
+(30, 23, 'Transport kruszywa Okmiany-Goczałków', 'kurs', 374.09, 23,5)
 ;

@@ -75,7 +75,6 @@ public class Order {
     @ManyToOne
     private Trailer trailer;
 
-//    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @ManyToMany(cascade = {CascadeType.MERGE})
     @JoinTable(name = "drivers_orders", joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "driver_id"))
