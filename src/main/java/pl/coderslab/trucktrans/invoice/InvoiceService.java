@@ -37,7 +37,6 @@ public class InvoiceService {
     private final InvoiceRepository invoiceRepository;
     private final ItemRepository itemRepository;
     private static final String DIRECTORY = "/Users/monikamisiewicz/Desktop/reports/";
-    private static final String FONT = "static/fonts/Goldoni-65vo.ttf";
     private static final String IMG = "static/images/logo3.png";
 
     public List<Invoice> getAllInvoices() {
@@ -65,12 +64,12 @@ public class InvoiceService {
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(file + "/" + "invoices" + ".pdf"));
             document.open();
 
-            Font titleFont = FontFactory.getFont(FONT, 14, BaseColor.GRAY);
-            Font dateFont = FontFactory.getFont(FONT, 10, BaseColor.GRAY);
-            Font tableHeader = FontFactory.getFont(FONT, 10, BaseColor.WHITE);
-            Font tableBody = FontFactory.getFont(FONT, 9, BaseColor.BLACK);
-            Font redFont = FontFactory.getFont(FONT, 9, BaseColor.RED);
-            Font greenFont = FontFactory.getFont(FONT, 9, BaseColor.GREEN);
+            Font titleFont = FontFactory.getFont("Arial", 14, BaseColor.GRAY);
+            Font dateFont = FontFactory.getFont("Arial", 10, BaseColor.GRAY);
+            Font tableHeader = FontFactory.getFont("Arial", 10, BaseColor.WHITE);
+            Font tableBody = FontFactory.getFont("Arial", 9, BaseColor.BLACK);
+            Font redFont = FontFactory.getFont("Arial", 9, BaseColor.RED);
+            Font greenFont = FontFactory.getFont("Arial", 9, BaseColor.GREEN);
 
             LocalDate localDate = LocalDate.now();
             Paragraph generateDate = new Paragraph("Generated: " + localDate, dateFont);
@@ -296,9 +295,9 @@ public class InvoiceService {
 //            document.add(logo);
 
 
-            Font titleFont = FontFactory.getFont(FONT, 14, BaseColor.GRAY);
-            Font tableHeader = FontFactory.getFont(FONT, 10, BaseColor.WHITE);
-            Font tableBody = FontFactory.getFont(FONT, 9, BaseColor.BLACK);
+            Font titleFont = FontFactory.getFont("Arial", 14, BaseColor.GRAY);
+            Font tableHeader = FontFactory.getFont("Arial", 10, BaseColor.WHITE);
+            Font tableBody = FontFactory.getFont("Arial", 9, BaseColor.BLACK);
 
 
             Paragraph paragraph = new Paragraph("Invoice no. " + invoice.getInvoiceNumber(), titleFont);

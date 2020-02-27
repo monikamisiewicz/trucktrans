@@ -24,7 +24,6 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private static final String DIRECTORY = "/Users/monikamisiewicz/Desktop/reports/";
-    private static final String FONT = "static/fonts/Goldoni-65vo.ttf";
 
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
@@ -44,10 +43,10 @@ public class OrderService {
             document.open();
 
 
-            Font titleFont = FontFactory.getFont(FONT, 14, BaseColor.GRAY);
-            Font dateFont = FontFactory.getFont(FONT, 10, BaseColor.GRAY);
-            Font tableHeader = FontFactory.getFont(FONT, 10, BaseColor.WHITE);
-            Font tableBody = FontFactory.getFont(FONT, 9, BaseColor.BLACK);
+            Font titleFont = FontFactory.getFont("Arial", 14, BaseColor.GRAY);
+            Font dateFont = FontFactory.getFont("Arial", 10, BaseColor.GRAY);
+            Font tableHeader = FontFactory.getFont("Arial", 10, BaseColor.WHITE);
+            Font tableBody = FontFactory.getFont("Arial", 9, BaseColor.BLACK);
 
             LocalDate localDate = LocalDate.now();
             Paragraph generateDate = new Paragraph("Generated: " + localDate, dateFont);
