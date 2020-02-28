@@ -61,8 +61,8 @@ public class PdfExcelController {
         List<Invoice> invoices = invoiceService.getAllInvoices();
         boolean isFlag = invoiceService.createExcel(invoices, servletContext, request, response);
         if (isFlag) {
-            String fullPath = DIRECTORY + "invoice.xls";
-            filedownload(fullPath, response, "invoice.xls");
+            String fullPath = DIRECTORY + "invoices.xlsx";
+            filedownload(fullPath, response, "invoices.xlsx");
         }
     }
 
@@ -110,7 +110,7 @@ public class PdfExcelController {
                 BufferedInputStream inStream = new BufferedInputStream(new FileInputStream(file));
                 BufferedOutputStream outStream = new BufferedOutputStream(response.getOutputStream());
 
-                byte[] buffer = new byte[4096];
+                byte[] buffer = new byte[BUFFER_SIZE];
                 int bytesRead = 0;
                 while ((bytesRead = inStream.read(buffer)) != -1) {
                     outStream.write(buffer, 0, bytesRead);

@@ -289,9 +289,6 @@ public class InvoiceService {
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(file + "/" + "invoice" + ".pdf"));
             document.open();
 
-//            Image logo = Image.getInstance(IMG);
-//            document.add(logo);
-
 
             Font titleFont = FontFactory.getFont(FONT, BaseFont.IDENTITY_H, true, 14, Font.NORMAL ,BaseColor.GRAY);
             Font tableHeader = FontFactory.getFont(FONT, BaseFont.IDENTITY_H, true, 10, Font.NORMAL ,BaseColor.WHITE);
@@ -629,7 +626,7 @@ public class InvoiceService {
         }
 
         try {
-            FileOutputStream outputStream = new FileOutputStream(file + "/" + "invoices" + ".xls");
+            FileOutputStream outputStream = new FileOutputStream(file + "/" + "invoices" + ".xlsx");
             XSSFWorkbook workbook = new XSSFWorkbook();
             XSSFSheet workSheet = workbook.createSheet("invoices");
             workSheet.setDefaultColumnWidth(30);
