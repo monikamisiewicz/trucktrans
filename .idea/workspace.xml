@@ -260,6 +260,11 @@
       <change beforePath="$PROJECT_DIR$/../../warsztaty_3/jee-school/src/main/java/pl/coderslab/utils/DBUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../warsztaty_3/jee-school/src/main/java/pl/coderslab/utils/DBUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../warsztaty_3/jee-school/src/main/webapp/META-INF/context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../warsztaty_3/jee-school/src/main/webapp/META-INF/context.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/contractor/ContractorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/contractor/ContractorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/invoice/InvoiceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/invoice/InvoiceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/order/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/order/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/fonts/Goldoni-65vo.ttf" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -308,46 +313,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/download/PdfExcelController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/TrucktransApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1542">
-              <caret line="116" column="17" lean-forward="true" selection-start-line="116" selection-start-column="17" selection-end-line="116" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/invoice/InvoiceService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="299" column="56" selection-start-line="299" selection-start-column="56" selection-end-line="299" selection-end-column="56" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/contractor/ContractorService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1614">
-              <caret line="48" column="56" selection-start-line="48" selection-start-column="56" selection-end-line="48" selection-end-column="56" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="75">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/order/OrderService.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/invoice/InvoiceService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2724">
-              <caret line="48" column="56" selection-start-line="48" selection-start-column="56" selection-end-line="48" selection-end-column="56" />
+            <state relative-caret-position="143">
+              <caret line="626" column="22" lean-forward="true" selection-start-line="626" selection-start-column="22" selection-end-line="626" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -396,7 +374,6 @@
         <option value="$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/tractor/TractorController.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/trailer/TrailerController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/app.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/model/Driver.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
         <option value="$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/order/OrderController.java" />
@@ -424,7 +401,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/orders/list.html" />
         <option value="$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/model/Order.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/download/PdfExcelController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/fragment.html" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/invoice/InvoiceController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/invoices/details.html" />
@@ -433,6 +409,8 @@
         <option value="$PROJECT_DIR$/src/main/resources/static/sql/import.sql" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/fleet.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/error.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/fragment.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/invoice/InvoiceService.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/contractor/ContractorService.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/order/OrderService.java" />
@@ -475,10 +453,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="48" />
-    <option name="y" value="23" />
-    <option name="width" value="1040" />
-    <option name="height" value="823" />
+    <option name="x" value="3" />
+    <option name="y" value="407" />
+    <option name="width" value="1310" />
+    <option name="height" value="438" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -551,7 +529,7 @@
               <item name="pl" type="462c0819:PsiDirectoryNode" />
               <item name="coderslab" type="462c0819:PsiDirectoryNode" />
               <item name="trucktrans" type="462c0819:PsiDirectoryNode" />
-              <item name="order" type="462c0819:PsiDirectoryNode" />
+              <item name="contractor" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="trucktrans" type="b2602c69:ProjectViewProjectNode" />
@@ -567,14 +545,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="trucktrans" type="b2602c69:ProjectViewProjectNode" />
-              <item name="trucktrans" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -725,7 +695,8 @@
       <workItem from="1582702238851" duration="5303000" />
       <workItem from="1582710184682" duration="21571000" />
       <workItem from="1582808330183" duration="848000" />
-      <workItem from="1582819711636" duration="475000" />
+      <workItem from="1582819711636" duration="4818000" />
+      <workItem from="1582880236392" duration="3097000" />
     </task>
     <servers />
   </component>
@@ -744,7 +715,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="486719000" />
+    <option name="totallyTimeSpent" value="494159000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -756,7 +727,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="147" y="23" width="1226" height="823" extended-state="0" />
+    <frame x="3" y="407" width="1310" height="438" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
@@ -768,7 +739,7 @@
       <window_info id="Web" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32674772" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49941522" weight="0.37893298" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49941522" weight="0.13082707" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.41196012" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -784,7 +755,7 @@
       <window_info anchor="bottom" id="Database Console" order="15" weight="0.46547884" />
       <window_info anchor="bottom" id="SQL Generator" order="16" weight="0.32739422" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="1" visible="true" weight="0.18327703" />
+      <window_info anchor="right" content_ui="combo" id="Project" order="1" visible="true" weight="0.17113565" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
       <window_info anchor="right" id="Maven" order="4" weight="0.29429206" />
@@ -871,25 +842,25 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/invoice/InvoiceService.java</url>
-          <line>87</line>
+          <line>85</line>
           <properties />
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/contractor/ContractorService.java</url>
-          <line>82</line>
+          <line>84</line>
           <properties />
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/invoice/InvoiceService.java</url>
-          <line>486</line>
+          <line>484</line>
           <properties />
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/invoice/InvoiceService.java</url>
-          <line>402</line>
+          <line>400</line>
           <properties />
           <option name="timeStamp" value="29" />
         </line-breakpoint>
@@ -949,37 +920,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/order/OrderController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2160">
-          <caret line="164" column="35" selection-start-line="164" selection-start-column="35" selection-end-line="164" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/order/OrderRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/contractor/ContractorRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="315">
-            <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/sql/Dump20200221.sql" />
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/download/PdfController.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/download/PdfControllerTest.java" />
@@ -1198,24 +1138,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="52" selection-start-line="18" selection-start-column="52" selection-end-line="18" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fleet.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="21" column="6" lean-forward="true" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragment.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-368">
-          <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -1252,30 +1178,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/invoice/InvoiceService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragment.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="299" column="56" selection-start-line="299" selection-start-column="56" selection-end-line="299" selection-end-column="56" />
+        <state relative-caret-position="15">
+          <caret line="1" column="14" lean-forward="true" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/TrucktransApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/fonts/FreeSans.ttf">
+      <provider selected="true" editor-type-id="fontseditor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/contractor/ContractorService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="3" lean-forward="true" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="67" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/contractor/ContractorService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/IndexController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1614">
-          <caret line="48" column="56" selection-start-line="48" selection-start-column="56" selection-end-line="48" selection-end-column="56" />
+        <state relative-caret-position="120">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/order/OrderRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#0#52#1" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/order/OrderService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2724">
-          <caret line="48" column="56" selection-start-line="48" selection-start-column="56" selection-end-line="48" selection-end-column="56" />
+        <state relative-caret-position="965">
+          <caret line="70" column="69" selection-start-line="70" selection-start-column="69" selection-end-line="70" selection-end-column="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/coderslab/trucktrans/invoice/InvoiceService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="626" column="22" lean-forward="true" selection-start-line="626" selection-start-column="22" selection-end-line="626" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

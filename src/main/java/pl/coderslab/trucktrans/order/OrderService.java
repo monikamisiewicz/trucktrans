@@ -1,6 +1,7 @@
 package pl.coderslab.trucktrans.order;
 
 import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -24,6 +25,7 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private static final String DIRECTORY = "/Users/monikamisiewicz/Desktop/reports/";
+    private static final String FONT = "static/fonts/FreeSans.ttf";
 
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
@@ -43,10 +45,10 @@ public class OrderService {
             document.open();
 
 
-            Font titleFont = FontFactory.getFont("Arial", 14, BaseColor.GRAY);
-            Font dateFont = FontFactory.getFont("Arial", 10, BaseColor.GRAY);
-            Font tableHeader = FontFactory.getFont("Arial", 10, BaseColor.WHITE);
-            Font tableBody = FontFactory.getFont("Arial", 9, BaseColor.BLACK);
+            Font titleFont = FontFactory.getFont(FONT, BaseFont.IDENTITY_H, true, 14, Font.NORMAL ,BaseColor.GRAY);
+            Font dateFont = FontFactory.getFont(FONT, BaseFont.IDENTITY_H, true, 10, Font.NORMAL ,BaseColor.GRAY);
+            Font tableHeader = FontFactory.getFont(FONT, BaseFont.IDENTITY_H, true, 10, Font.NORMAL ,BaseColor.WHITE);
+            Font tableBody = FontFactory.getFont(FONT, BaseFont.IDENTITY_H, true, 8, Font.NORMAL ,BaseColor.BLACK);
 
             LocalDate localDate = LocalDate.now();
             Paragraph generateDate = new Paragraph("Generated: " + localDate, dateFont);
@@ -66,7 +68,7 @@ public class OrderService {
             table.setSpacingAfter(10);
 
 
-            float[] columnWidths = {2f, 2f, 4f, 2f, 2f, 2f, 1f, 1f, 2f, 2f};
+            float[] columnWidths = {2f, 3f, 4f, 3f, 3f, 3f, 3f, 3f, 3f, 3f};
             table.setWidths(columnWidths);
 
 

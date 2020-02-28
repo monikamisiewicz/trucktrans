@@ -2,13 +2,12 @@ package pl.coderslab.trucktrans.invoice;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import lombok.RequiredArgsConstructor;
 
-import org.apache.poi.hssf.usermodel.*;
-import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
 import org.springframework.stereotype.Service;
@@ -21,11 +20,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 
@@ -37,6 +34,7 @@ public class InvoiceService {
     private final InvoiceRepository invoiceRepository;
     private final ItemRepository itemRepository;
     private static final String DIRECTORY = "/Users/monikamisiewicz/Desktop/reports/";
+    private static final String FONT = "static/fonts/FreeSans.ttf";
     private static final String IMG = "static/images/logo3.png";
 
     public List<Invoice> getAllInvoices() {
@@ -64,12 +62,12 @@ public class InvoiceService {
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(file + "/" + "invoices" + ".pdf"));
             document.open();
 
-            Font titleFont = FontFactory.getFont("Arial", 14, BaseColor.GRAY);
-            Font dateFont = FontFactory.getFont("Arial", 10, BaseColor.GRAY);
-            Font tableHeader = FontFactory.getFont("Arial", 10, BaseColor.WHITE);
-            Font tableBody = FontFactory.getFont("Arial", 9, BaseColor.BLACK);
-            Font redFont = FontFactory.getFont("Arial", 9, BaseColor.RED);
-            Font greenFont = FontFactory.getFont("Arial", 9, BaseColor.GREEN);
+            Font titleFont = FontFactory.getFont(FONT, BaseFont.IDENTITY_H, true, 14, Font.NORMAL ,BaseColor.GRAY);
+            Font dateFont = FontFactory.getFont(FONT, BaseFont.IDENTITY_H, true, 10, Font.NORMAL ,BaseColor.GRAY);
+            Font tableHeader = FontFactory.getFont(FONT, BaseFont.IDENTITY_H, true, 10, Font.NORMAL ,BaseColor.WHITE);
+            Font tableBody = FontFactory.getFont(FONT, BaseFont.IDENTITY_H, true, 9, Font.NORMAL ,BaseColor.BLACK);
+            Font redFont = FontFactory.getFont(FONT, BaseFont.IDENTITY_H, true, 9, Font.NORMAL ,BaseColor.RED);
+            Font greenFont = FontFactory.getFont(FONT, BaseFont.IDENTITY_H, true, 9, Font.NORMAL ,BaseColor.GREEN);
 
             LocalDate localDate = LocalDate.now();
             Paragraph generateDate = new Paragraph("Generated: " + localDate, dateFont);
@@ -295,9 +293,9 @@ public class InvoiceService {
 //            document.add(logo);
 
 
-            Font titleFont = FontFactory.getFont("Arial", 14, BaseColor.GRAY);
-            Font tableHeader = FontFactory.getFont("Arial", 10, BaseColor.WHITE);
-            Font tableBody = FontFactory.getFont("Arial", 9, BaseColor.BLACK);
+            Font titleFont = FontFactory.getFont(FONT, BaseFont.IDENTITY_H, true, 14, Font.NORMAL ,BaseColor.GRAY);
+            Font tableHeader = FontFactory.getFont(FONT, BaseFont.IDENTITY_H, true, 10, Font.NORMAL ,BaseColor.WHITE);
+            Font tableBody = FontFactory.getFont(FONT, BaseFont.IDENTITY_H, true, 9, Font.NORMAL ,BaseColor.BLACK);
 
 
             Paragraph paragraph = new Paragraph("Invoice no. " + invoice.getInvoiceNumber(), titleFont);
@@ -641,7 +639,7 @@ public class InvoiceService {
             headerCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 
             XSSFFont font = workbook.createFont();
-            font.setFontName("Arial");
+            font.setFontName(FONT);
             font.setFontHeightInPoints((short) 16);
             font.setBold(true);
             headerCellStyle.setFont(font);

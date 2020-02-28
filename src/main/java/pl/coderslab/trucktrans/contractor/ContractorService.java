@@ -1,6 +1,7 @@
 package pl.coderslab.trucktrans.contractor;
 
 import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -24,6 +25,7 @@ public class ContractorService {
 
     private final ContractorRepository contractorRepository;
     private static final String DIRECTORY = "/Users/monikamisiewicz/Desktop/reports/";
+    private static final String FONT = "static/fonts/FreeSans.ttf";
 
     public List<Contractor> getAllContractors() {
         return contractorRepository.findAll();
@@ -43,10 +45,10 @@ public class ContractorService {
             document.open();
 
 
-            Font titleFont = FontFactory.getFont("Arial", 14, BaseColor.GRAY);
-            Font dateFont = FontFactory.getFont("Arial", 10, BaseColor.GRAY);
-            Font tableHeader = FontFactory.getFont("Arial", 10, BaseColor.WHITE);
-            Font tableBody = FontFactory.getFont("Arial", 9, BaseColor.BLACK);
+            Font titleFont = FontFactory.getFont(FONT, BaseFont.IDENTITY_H, true, 14, Font.NORMAL ,BaseColor.GRAY);
+            Font dateFont = FontFactory.getFont(FONT, BaseFont.IDENTITY_H, true, 10, Font.NORMAL ,BaseColor.GRAY);
+            Font tableHeader = FontFactory.getFont(FONT, BaseFont.IDENTITY_H, true, 10, Font.NORMAL ,BaseColor.WHITE);
+            Font tableBody = FontFactory.getFont(FONT, BaseFont.IDENTITY_H, true, 9, Font.NORMAL ,BaseColor.BLACK);
 
             LocalDate localDate = LocalDate.now();
             Paragraph generateDate = new Paragraph("Generated: " + localDate, dateFont);
