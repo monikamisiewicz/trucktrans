@@ -20,12 +20,4 @@ class OrderControllerTest {
         // when
         orderRepository.save(null);
     }
-
-    @Test
-    void getByDate() {
-    }
-
-    @Test
-    void getByDateRange() {
-    }
 }
